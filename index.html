@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Mesto</title>
+  </head>
+  <body class="page">
+      <header class="header">
+        <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+      </header>
+
+      <main class="content">
+        <section class="profile">
+          <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар">
+          <div class="profile__info">
+            <p class="profile__name">Жак-Ив Кусто</p>
+            <p class="profile__about">Исследователь океана</p>
+            <form class="profile__form-edit">
+              <button type="button" name="button-edit" class="profile__button-edit"></button>
+            </form>
+          </div>
+          <form class="profile__form-add">
+            <button type="button" name="button-add" class="profile__button-add"></button>
+          </form>
+        </section>
+
+        <div class="popup popup_disabled">
+          <form class="popup__form">
+            <fieldset class="popup__container">
+              <h2 class="popup__heading">Редактирование профиля</h2>
+              <input type="text" name="name" class="popup__item popup__item_name">
+              <input type="text" name="about" class="popup__item popup__item_about">
+              <input type="submit" name="button-save" class="popup__button-save" value="Сохранить">
+            </fieldset>
+            <button type="button" name="button-cancel" class="popup__button-cancel"></button>
+          </form>
+        </div>
+
+        <ul class="elements">
+            <li class="element">
+              <img class="element__image" src="./images/arkhyz.jpg" alt="Архыз, Карачаево-Черкессия">
+              <p class="element__text">гора Архыз, Карачаево-Черкессия</p>
+              <form>
+                <button type="button" name="button-like" class="element__button-like element__button-like_disabled"></button>
+              </form>
+            </li>
+            <li class="element">
+              <img class="element__image" src="./images/kamchatka.jpg" alt="Полуостров Камчатка">
+              <p class="element__text">Полуостров Камчатка</p>
+              <form>
+                <button type="button" name="button-like" class="element__button-like element__button-like_disabled"></button>
+              </form>
+            </li>
+            <li class="element">
+              <img class="element__image" src="./images/krasnaya-polyana.jpg" alt="Красная поляна">
+              <p class="element__text">Красная поляна, Краснодарский край</p>
+              <form>
+                <button type="button" name="button-like" class="element__button-like element__button-like_disabled"></button>
+              </form>
+            </li>
+            <li class="element">
+              <img class="element__image" src="./images/north-ossetia-alania.jpg" alt="Северная Осетия - Алания">
+              <p class="element__text">Северная Осетия - Алания</p>
+              <form>
+                <button type="button" name="button-like" class="element__button-like element__button-like_disabled"></button>
+              </form>
+            </li>
+            <li class="element">
+              <img class="element__image" src="./images/olkhon-island.jpg" alt="Остров Ольхон">
+              <p class="element__text">Остров Ольхон</p>
+              <form>
+                <button type="button" name="button-like" class="element__button-like element__button-like_disabled"></button>
+              </form>
+            </li>
+            <li class="element">
+              <img class="element__image" src="./images/ust-lenskiy-zapovednik.jpg" alt="Усть-Ленский Заповедник">
+              <p class="element__text">Усть-Ленский Заповедник</p>
+              <form>
+                <button type="button" name="button-like" class="element__button-like element__button-like_disabled"></button>
+              </form>
+            </li>
+          </ul>
+      </main>
+
+      <footer class="footer">
+        <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+      </footer>
+    <script src="./scripts/popup.js"></script>
+  </body>
+</html>

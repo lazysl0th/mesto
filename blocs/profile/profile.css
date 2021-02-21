@@ -1,0 +1,30 @@
+.profile {
+  display: flex;
+  flex-basis: calc(100% - 200px * 2);
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1066px) {
+  .profile {
+    flex-basis: calc(100% - 100px * 2);
+  }
+}
+
+@media screen and (max-width: 866px) {
+  .profile {
+    flex-basis: calc(100% - 50px * 2);
+  }
+}
+
+@media screen and (max-width: 765px) {
+  .profile {
+    flex-basis: calc(100% - 19px * 2);
+  }
+}
+
+@media screen and (max-width: 665px) {
+  .profile {
+    justify-content: space-around;
+  }
+}
