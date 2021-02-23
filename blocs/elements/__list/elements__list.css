@@ -7,7 +7,7 @@
   justify-content: space-between;
 }
 
-@media screen and (max-width: 1246px) {
+@media screen and (max-width: 1262px) {
   .elements__list {
     justify-content: space-around;
   }
