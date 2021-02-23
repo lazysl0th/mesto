@@ -1,5 +1,4 @@
 .popup__item {
-  flex-basis: calc(100% - 36px * 2);
   margin: 0 0 17px;
   border-top: none;
   border-right: none;
@@ -14,10 +13,4 @@
 
 .popup__item:nth-of-type(2) {
   margin-bottom: 0;
-}
-
-@media screen and (max-width: 434px) {
-  .popup__item {
-    flex-basis: calc(100% - 22px * 2);
-  }
 }

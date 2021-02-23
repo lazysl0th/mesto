@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./pages/index.css">
-    <title>Mesto</title>
+    <title>Место</title>
   </head>
   <body class="page">
       <header class="header">
@@ -15,73 +15,59 @@
         <section class="profile">
           <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар">
           <div class="profile__info">
-            <p class="profile__name">Жак-Ив Кусто</p>
+            <h2 class="profile__name">Жак-Ив Кусто</h2>
             <p class="profile__about">Исследователь океана</p>
-            <form class="profile__form-edit">
-              <button type="button" name="button-edit" class="profile__button-edit"></button>
-            </form>
+            <button type="button" name="button-edit" class="profile__button-edit"></button>
           </div>
-          <form class="profile__form-add">
-            <button type="button" name="button-add" class="profile__button-add"></button>
-          </form>
+          <button type="button" name="button-add" class="profile__button-add"></button>
         </section>
 
         <div class="popup popup_disabled">
-          <form class="popup__form">
-            <fieldset class="popup__container">
+          <form name="popup" class="popup__form">
               <h2 class="popup__heading">Редактирование профиля</h2>
-              <input type="text" name="name" class="popup__item popup__item_name">
-              <input type="text" name="about" class="popup__item popup__item_about">
-              <input type="submit" name="button-save" class="popup__button-save" value="Сохранить">
-            </fieldset>
-            <button type="button" name="button-cancel" class="popup__button-cancel"></button>
+              <input type="text" name="name" class="popup__item popup__item_profile_name">
+              <input type="text" name="about" class="popup__item popup__item_profile_about">
+              <button type="submit" name="button-save" class="popup__button-save">Сохранить</button>
           </form>
+          <div class="popup__button">
+            <button type="button" name="button-cancel" class="popup__button-cancel"></button>
+          </div>
         </div>
 
-        <ul class="elements">
+        <section class="elements">
+          <ul class="elements__list">
             <li class="element">
               <img class="element__image" src="./images/arkhyz.jpg" alt="Архыз, Карачаево-Черкессия">
-              <p class="element__text">гора Архыз, Карачаево-Черкессия</p>
-              <form>
-                <button type="button" name="button-like" class="element__button-like element__button-like_disabled"></button>
-              </form>
+              <h2 class="element__text">гора Архыз, Карачаево-Черкессия</h2>
+              <button type="button" name="button-like" class="element__button-like"></button>
             </li>
             <li class="element">
               <img class="element__image" src="./images/kamchatka.jpg" alt="Полуостров Камчатка">
-              <p class="element__text">Полуостров Камчатка</p>
-              <form>
-                <button type="button" name="button-like" class="element__button-like element__button-like_disabled"></button>
-              </form>
+              <h2 class="element__text">Полуостров Камчатка</h2>
+              <button type="button" name="button-like" class="element__button-like"></button>
             </li>
             <li class="element">
               <img class="element__image" src="./images/krasnaya-polyana.jpg" alt="Красная поляна">
-              <p class="element__text">Красная поляна, Краснодарский край</p>
-              <form>
-                <button type="button" name="button-like" class="element__button-like element__button-like_disabled"></button>
-              </form>
+              <h2 class="element__text">Красная поляна, Краснодарский край</h2>
+              <button type="button" name="button-like" class="element__button-like"></button>
             </li>
             <li class="element">
               <img class="element__image" src="./images/north-ossetia-alania.jpg" alt="Северная Осетия - Алания">
-              <p class="element__text">Северная Осетия - Алания</p>
-              <form>
-                <button type="button" name="button-like" class="element__button-like element__button-like_disabled"></button>
-              </form>
+              <h2 class="element__text">Северная Осетия - Алания</h2>
+              <button type="button" name="button-like" class="element__button-like"></button>
             </li>
             <li class="element">
               <img class="element__image" src="./images/olkhon-island.jpg" alt="Остров Ольхон">
-              <p class="element__text">Остров Ольхон</p>
-              <form>
-                <button type="button" name="button-like" class="element__button-like element__button-like_disabled"></button>
-              </form>
+              <h2 class="element__text">Остров Ольхон</h2>
+              <button type="button" name="button-like" class="element__button-like"></button>
             </li>
             <li class="element">
               <img class="element__image" src="./images/ust-lenskiy-zapovednik.jpg" alt="Усть-Ленский Заповедник">
-              <p class="element__text">Усть-Ленский Заповедник</p>
-              <form>
-                <button type="button" name="button-like" class="element__button-like element__button-like_disabled"></button>
-              </form>
+              <h2 class="element__text">Усть-Ленский Заповедник</h2>
+              <button type="button" name="button-like" class="element__button-like"></button>
             </li>
           </ul>
+        </section>
       </main>
 
       <footer class="footer">

@@ -20,12 +20,8 @@
 @import "../blocs/profile/__name/profile__name.css";
 /*profile__about*/
 @import "../blocs/profile/__about/profile__about.css";
-/*profile__form-edit*/
-@import "../blocs/profile/__form-edit/profile__form-edit.css";
-/*profile__edit-button*/
+/*profile__button-edit*/
 @import "../blocs/profile/__button-edit/profile__button-edit.css";
-/*profile__form-add*/
-@import "../blocs/profile/__form-add/profile__form-add.css";
 /*profile__add-button*/
 @import "../blocs/profile/__button-add/profile__button-add.css";
 /*popup*/
@@ -34,18 +30,20 @@
 @import "../blocs/popup/_disabled/popup_disabled.css";
 /*popup__form*/
 @import "../blocs/popup/__form/popup__form.css";
-/*popup__container*/
-@import "../blocs/popup/__container/popup__container.css";
 /*popup__heading*/
 @import "../blocs/popup/__heading/popup__heading.css";
 /*popup__item*/
 @import "../blocs/popup/__item/popup__item.css";
 /*popup__button-save*/
 @import "../blocs/popup/__button-save/popup__button-save.css";
+/*popup__button*/
+@import "../blocs/popup/__button/popup__button.css";
 /*popup__button-cancel*/
 @import "../blocs/popup/__button-cancel/popup__button-cancel.css";
 /*elements*/
 @import "../blocs/elements/elements.css";
+/*elements__list*/
+@import "../blocs/elements/__list/elements__list.css";
 /*element*/
 @import "../blocs/element/element.css";
 /*element__image*/
@@ -55,7 +53,7 @@
 /*element__button*/
 @import "../blocs/element/__button-like/element__button-like.css";
 /*element__button_disabled*/
-@import "../blocs/element/__button-like/_disabled/element__button-like_disabled.css";
+@import "../blocs/element/__button-like/_active/element__button-like_active.css";
 /*footer*/
 @import "../blocs/footer/footer.css";
 /*footer__copyright*/

@@ -1,12 +1,22 @@
 .popup__form {
-  flex-basis: 465px;
+  max-width: 430px;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+  padding: 36px;
+  margin: 0;
+  justify-content: center;
+  box-sizing: border-box;
+  order: 2;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 465px) {
   .popup__form {
-    flex-basis: calc(100% - 19px * 2);
+    padding: 25px 22px;
+    width: calc(100% - 19px * 2);
   }
 }

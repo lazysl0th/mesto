@@ -1,5 +1,4 @@
 .popup__button-save {
-  flex-basis: calc(100% - 36px * 2);
   margin: 48px 0 0;
   padding: 0;
   border: none;
@@ -15,10 +14,5 @@
 .popup__button-save:hover {
   background-color: rgba(0, 0, 0, 0.8);
   cursor: pointer;
-}
-
-@media screen and (max-width: 434px) {
-  .popup__button-save {
-    flex-basis: calc(100% - 22px * 2);
-  }
+  transition: opacity 0.5s linear 0s;
 }

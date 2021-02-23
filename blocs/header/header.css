@@ -1,11 +1,10 @@
 .header {
-  padding: 45px 0 0;
+  padding: 45px 0 41px;
   flex-basis: calc(100% - 200px * 2);
-  min-height: 74px;
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
-@media screen and (max-width: 1066px) {
+@media screen and (max-width: 1045px) {
   .header {
     flex-basis: calc(100% - 100px * 2);
   }
@@ -19,7 +18,7 @@
 
 @media screen and (max-width: 765px) {
   .header {
-    padding-left: 27px;
+    padding: 28px 0 32px 27px;
     flex-basis: 100%;
   }
 }

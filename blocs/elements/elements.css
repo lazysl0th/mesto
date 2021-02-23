@@ -1,33 +1,5 @@
 .elements {
-  list-style-type: none;
   margin: 0;
-  padding: 27px 0 0;
+  padding-top: 27px;
   display: flex;
-  flex-wrap: wrap;
-  flex-basis: calc(100% - 200px * 2);
-  justify-content: space-between;
-}
-
-@media screen and (max-width: 1246px) {
-  .elements {
-    justify-content: space-around;
-  }
-}
-
-@media screen and (max-width: 1066px) {
-  .elements {
-    flex-basis: calc(100% - 100px * 2);
-  }
-}
-
-@media screen and (max-width: 866px) {
-  .elements {
-    flex-basis: calc(100% - 50px * 2);
-  }
-}
-
-@media screen and (max-width: 765px) {
-  .elements {
-    flex-basis: calc(100% - 19px * 2);
-  }
 }

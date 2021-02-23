@@ -5,15 +5,13 @@
   font-size: 24px;
   line-height: 29px;
   color: black;
-  flex-basis: calc(100% - 36px * 2);
   white-space: nowrap;
 }
 
-@media screen and (max-width: 434px) {
+@media screen and (max-width: 465px) {
   .popup__heading {
     margin-bottom: 75px;
     font-size: 18px;
     line-height: 22px;
-    flex-basis: calc(100% - 22px * 2);
   }
 }
