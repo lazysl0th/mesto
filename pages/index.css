@@ -36,8 +36,6 @@
 @import "../blocs/popup/__item/popup__item.css";
 /*popup__button-save*/
 @import "../blocs/popup/__button-save/popup__button-save.css";
-/*popup__button*/
-@import "../blocs/popup/__button/popup__button.css";
 /*popup__button-cancel*/
 @import "../blocs/popup/__button-cancel/popup__button-cancel.css";
 /*elements*/

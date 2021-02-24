@@ -8,10 +8,11 @@
   white-space: nowrap;
 }
 
-@media screen and (max-width: 465px) {
+@media screen and (max-width: 434px) {
   .popup__heading {
     margin-bottom: 75px;
     font-size: 18px;
     line-height: 22px;
   }
 }
+

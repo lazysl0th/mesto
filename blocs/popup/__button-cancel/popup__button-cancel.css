@@ -9,9 +9,8 @@
   height: 40px;
   outline: none;
   background-repeat: no-repeat;
-  align-self: flex-end;
-
-}
+  grid-area: popup__button-cancel;
+  }
 
 .popup__button-cancel:hover {
   opacity: 0.6;
@@ -19,10 +18,11 @@
   transition: opacity 0.5s linear 0s;
 }
 
-@media screen and (max-width: 465px) {
+@media screen and (max-width: 510px) {
   .popup__button-cancel {
     width: 26px;
     height: 26px;
-    background-size: contain;
+    background-size: 150%;
+    justify-self: end;
   }
 }

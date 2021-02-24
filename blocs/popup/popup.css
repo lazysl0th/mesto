@@ -4,11 +4,28 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin: 0;
   padding: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(max-content, 430px));
+  grid-template-rows: repeat(2, max-content);
+  grid-auto-columns: max-content;
+  grid-template-areas:
+  ". popup__button-cancel"
+  "popup__form .";
+  justify-content: center;
+  align-content: center;
 }
+
+@media screen and (max-width: 510px) {
+  .popup {
+    grid-template-columns: repeat(1, minmax(max-content, calc(100% - 19px * 2)));
+    row-gap: 16px;
+    grid-template-areas:
+    "popup__button-cancel"
+    "popup__form";
+    justify-items: center;
+  }
+}
+

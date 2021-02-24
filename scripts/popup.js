@@ -12,6 +12,12 @@ function disabledPopup() {
   return popup.classList.add('popup_disabled');
 }
 
+function openPopup () {
+  popupName.value = profileName.textContent;
+  popupAbout.value = profileAbout.textContent;
+  return popup.classList.remove('popup_disabled');
+}
+
 function formSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = popupName.value;
@@ -19,12 +25,7 @@ function formSubmitHandler(evt) {
   disabledPopup();
 }
 
-buttonEdit.addEventListener('click', function() {
-  popupName.value = profileName.textContent;
-  popupAbout.value = profileAbout.textContent;
-  popup.classList.remove('popup_disabled');
-  }
-)
+buttonEdit.addEventListener('click', openPopup);
 
 buttonCancel.addEventListener ('click', disabledPopup);
 
