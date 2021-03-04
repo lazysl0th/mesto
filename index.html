@@ -7,70 +7,49 @@
     <title>Место</title>
   </head>
   <body class="page">
-      <header class="header">
-        <img class="header__logo" src="./images/logo.svg" alt="Логотип">
-      </header>
+    <header class="header">
+      <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+    </header>
 
-      <main class="content">
-        <section class="profile">
-          <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар">
-          <div class="profile__info">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <p class="profile__about">Исследователь океана</p>
-            <button type="button" name="button-edit" class="profile__button-edit"></button>
-          </div>
-          <button type="button" name="button-add" class="profile__button-add"></button>
-        </section>
-
-        <div class="popup popup_disabled">
-          <form name="popup" class="popup__form">
-              <h2 class="popup__heading">Редактирование профиля</h2>
-              <input type="text" name="name" class="popup__item popup__item_profile_name">
-              <input type="text" name="about" class="popup__item popup__item_profile_about">
-              <button type="submit" name="button-save" class="popup__button-save">Сохранить</button>
-          </form>
-          <button type="button" name="button-cancel" class="popup__button-cancel"></button>
+    <main class="content">
+      <section class="profile">
+        <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <p class="profile__about">Исследователь океана</p>
+          <button type="button" name="button-edit" class="profile__button-edit"></button>
         </div>
+        <button type="button" name="button-add" class="profile__button-add"></button>
+      </section>
 
-        <section class="elements">
-          <ul class="elements__list">
-            <li class="element">
-              <img class="element__image" src="./images/arkhyz.jpg" alt="Архыз, Карачаево-Черкессия">
-              <h2 class="element__text">гора Архыз, Карачаево-Черкессия</h2>
-              <button type="button" name="button-like" class="element__button-like"></button>
-            </li>
-            <li class="element">
-              <img class="element__image" src="./images/kamchatka.jpg" alt="Полуостров Камчатка">
-              <h2 class="element__text">Полуостров Камчатка</h2>
-              <button type="button" name="button-like" class="element__button-like"></button>
-            </li>
-            <li class="element">
-              <img class="element__image" src="./images/krasnaya-polyana.jpg" alt="Красная поляна">
-              <h2 class="element__text">Красная поляна, Краснодарский край</h2>
-              <button type="button" name="button-like" class="element__button-like"></button>
-            </li>
-            <li class="element">
-              <img class="element__image" src="./images/north-ossetia-alania.jpg" alt="Северная Осетия - Алания">
-              <h2 class="element__text">Северная Осетия - Алания</h2>
-              <button type="button" name="button-like" class="element__button-like"></button>
-            </li>
-            <li class="element">
-              <img class="element__image" src="./images/olkhon-island.jpg" alt="Остров Ольхон">
-              <h2 class="element__text">Остров Ольхон</h2>
-              <button type="button" name="button-like" class="element__button-like"></button>
-            </li>
-            <li class="element">
-              <img class="element__image" src="./images/ust-lenskiy-zapovednik.jpg" alt="Усть-Ленский Заповедник">
-              <h2 class="element__text">Усть-Ленский Заповедник</h2>
-              <button type="button" name="button-like" class="element__button-like"></button>
-            </li>
-          </ul>
-        </section>
-      </main>
+      <div class="popup popup_disabled">
+        <form name="popup" class="popup__form">
+            <h2 class="popup__heading">Редактирование профиля</h2>
+            <input type="text" name="name" class="popup__item popup__item_profile_name">
+            <input type="text" name="about" class="popup__item popup__item_profile_about">
+            <button type="submit" name="button-save" class="popup__button-save">Сохранить</button>
+        </form>
+        <button type="button" name="button-cancel" class="popup__button-cancel"></button>
+      </div>
 
-      <footer class="footer">
-        <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
-      </footer>
+      <section class="elements">
+        <ul class="elements__list">
+
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+    </footer>
+
+    <template id="element-template">
+      <li class="element">
+        <img class="element__image" src="" alt="">
+        <h2 class="element__text"></h2>
+        <button type="button" name="button-like" class="element__button-like"></button>
+      </li>
+    </template>
     <script src="./scripts/popup.js"></script>
   </body>
 </html>
