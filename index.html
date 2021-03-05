@@ -23,12 +23,7 @@
       </section>
 
       <div class="popup popup_disabled">
-        <form name="popup" class="popup__form">
-            <h2 class="popup__heading">Редактирование профиля</h2>
-            <input type="text" name="name" class="popup__item popup__item_profile_name">
-            <input type="text" name="about" class="popup__item popup__item_profile_about">
-            <button type="submit" name="button-save" class="popup__button-save">Сохранить</button>
-        </form>
+
         <button type="button" name="button-cancel" class="popup__button-cancel"></button>
       </div>
 
@@ -49,6 +44,15 @@
         <h2 class="element__text"></h2>
         <button type="button" name="button-like" class="element__button-like"></button>
       </li>
+    </template>
+
+    <template id="popup__form-template">
+      <form name="" class="popup__form">
+          <h2 class="popup__heading"></h2>
+          <input type="text" name="" class="popup__item" placeholder="">
+          <input type="text" name="" class="popup__item" placeholder="">
+          <button type="submit" name="button-save" class="popup__button-save">Сохранить</button>
+      </form>
     </template>
     <script src="./scripts/popup.js"></script>
   </body>
