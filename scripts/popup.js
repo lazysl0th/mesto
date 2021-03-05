@@ -1,27 +1,32 @@
 const content = document.querySelector('.content');
-const profileName = content.querySelector('.profile__name');
-const profileAbout = content.querySelector('.profile__about');
 const buttonEdit = content.querySelector('.profile__button-edit');
 const buttonAdd = content.querySelector('.profile__button-add');
 const popup = content.querySelector('.popup');
-const buttonCancel = popup.querySelector('.popup__button-cancel');
 
 const forms = [
- {
+  {
     formName: 'popupFormEditProfile',
     formHeading: 'Редактирование профиля',
-    firstInputName: 'profile_name',
-    secondInputName: 'profile_about',
+    firstInputName: 'profileName',
+    secondInputName: 'profileAbout',
+    firstPlaceholderName: '',
+    secondPlaceholderName: '',
+    firstInputValue: '',
+    secondInputValue: '',
     buttonText: 'Сохранить',
+    buttonName: 'button-edit',
   },
   {
     formName: 'popupFormAddElement',
     formHeading: 'Новое место',
-    firstInputName: 'element_name',
-    secondInputName: 'element_image',
+    firstInputName: 'elementText',
+    secondInputName: 'elementImage',
     firstPlaceholderName: 'Название',
     secondPlaceholderName: 'Ссылка на картинку',
+    firstInputValue: '',
+    secondInputValue: '',
     buttonText: 'Создать',
+    buttonName: 'button-add',
   },
 ];
 
@@ -31,57 +36,62 @@ const elementsList = document.querySelector('.elements__list');
 const elements = [
   {
     elementText: 'гора Архыз, Карачаево-Черкессия',
-    elementImageSrc: './images/arkhyz.jpg'
+    elementImage: './images/arkhyz.jpg',
   },
   {
     elementText: 'Полуостров Камчатка',
-    elementImageSrc: './images/kamchatka.jpg'
+    elementImage: './images/kamchatka.jpg',
   },
   {
     elementText: 'Красная поляна, Краснодарский край',
-    elementImageSrc: './images/krasnaya-polyana.jpg'
+    elementImage: './images/krasnaya-polyana.jpg',
   },
   {
     elementText: 'Северная Осетия - Алания',
-    elementImageSrc: './images/north-ossetia-alania.jpg'
+    elementImage: './images/north-ossetia-alania.jpg',
   },
   {
     elementText: 'Остров Ольхон',
-    elementImageSrc: './images/olkhon-island.jpg'
+    elementImage: './images/olkhon-island.jpg',
   },
   {
     elementText: 'Усть-Ленский Заповедник',
-    elementImageSrc: './images/ust-lenskiy-zapovednik.jpg'
+    elementImage: './images/ust-lenskiy-zapovednik.jpg',
   },
 ];
 
 function openPopup (evt) {
+  const buttonCancel = popup.querySelector('.popup__button-cancel');
+  const buttonName = evt.target.name;
+
+  createForm(forms, buttonName);
+
+  buttonCancel.addEventListener ('click', disabledPopup);
+  return popup.classList.remove('popup_disabled');
+}
+
+function createForm(forms, buttonName) {
+  form = forms.filter((item) => (item.buttonName === buttonName));
+  if (buttonName === 'button-edit') {
+    form[0].firstInputValue = content.querySelector('.profile__name').textContent;
+    form[0].secondInputValue = content.querySelector('.profile__about').textContent;
+  }
   const popupFormTemplate = document.querySelector('#popup__form-template').content;
   const popupForm = popupFormTemplate.querySelector('.popup__form').cloneNode(true);
 
-  if (evt.target.name === 'button-edit') {
-    popupForm.name = forms[0].formName;
-    popupForm.querySelector('.popup__heading').textContent = forms[0].formHeading;
-    popupForm.querySelectorAll('.popup__item')[0].name = forms[0].firstInputName;
-    popupForm.querySelectorAll('.popup__item')[0].value = profileName.textContent;
-    popupForm.querySelectorAll('.popup__item')[1].name = forms[0].secondInputName;
-    popupForm.querySelectorAll('.popup__item')[1].value = profileAbout.textContent;
-    popupForm.querySelector('.popup__button-save').textContent = forms[0].buttonText;
-  }
+  form.forEach(function(item){
+    popupForm.name = item.formName;
+    popupForm.querySelector('.popup__heading').textContent = item.formHeading;
+    popupForm.querySelector('.popup__item_first-input').name = item.firstInputName;
+    popupForm.querySelector('.popup__item_first-input').value = item.firstInputValue;
+    popupForm.querySelector('.popup__item_first-input').placeholder = item.firstPlaceholderName;
+    popupForm.querySelector('.popup__item_second-input').name = item.secondInputName;
+    popupForm.querySelector('.popup__item_second-input').value = item.secondInputValue;
+    popupForm.querySelector('.popup__item_second-input').placeholder = item.secondPlaceholderName;
+    popup.prepend(popupForm);
+  });
 
-  else {
-    popupForm.name = forms[1].formName;
-    popupForm.querySelector('.popup__heading').textContent = forms[1].formHeading;
-    popupForm.querySelectorAll('.popup__item')[0].name = forms[1].firstInputName;
-    popupForm.querySelectorAll('.popup__item')[0].placeholder = forms[1].firstPlaceholderName;
-    popupForm.querySelectorAll('.popup__item')[1].name = forms[1].secondInputName;
-    popupForm.querySelectorAll('.popup__item')[1].placeholder = forms[1].secondPlaceholderName;
-    popupForm.querySelector('.popup__button-save').textContent = forms[1].buttonText;
-  }
-
-  popup.prepend(popupForm);
   popupForm.addEventListener('submit', formSubmitHandler);
-  return popup.classList.remove('popup_disabled');
 }
 
 function disabledPopup() {
@@ -91,29 +101,41 @@ function disabledPopup() {
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
+  const popupItems = popup.querySelectorAll('.popup__item');
+  popupInputs = Array.from(popupItems).reduce((previousValue, item) => ({[previousValue.name]: previousValue.value, [item.name]: item.value,}));
+  console.log(popupInputs);
   if (popup.querySelector('.popup__form').name === 'popupFormEditProfile') {
-    profileName.textContent = popup.querySelectorAll('.popup__item')[0].value;
-    profileAbout.textContent = popup.querySelectorAll('.popup__item')[1].value;;
-  }
+      content.querySelector('.profile__name').textContent = popupInputs.profileName;
+      content.querySelector('.profile__about').textContent = popupInputs.profileAbout;
+    }
   else {
-
+    addElement(popupInputs)
   }
   disabledPopup();
 }
 
-elements.forEach(function (el) {
-  const element = elementTemplate.querySelector('.element').cloneNode(true);
+function openElement(elements) {
+  elements.forEach(function (el) {
+    const element = elementTemplate.querySelector('.element').cloneNode(true);
+    element.querySelector('.element__image').src = el.elementImage;
+    element.querySelector('.element__image').alt = el.elementText;
+    element.querySelector('.element__text').textContent = el.elementText;
+    elementsList.append(element);
+  })
+}
 
-  element.querySelector('.element__image').src = el.elementImageSrc;
-  element.querySelector('.element__image').alt = el.elementText;
-  element.querySelector('.element__text').textContent = el.elementText;
+function addElement(popupInputs) {
+  const newElement = elementTemplate.querySelector('.element').cloneNode(true);
+  newElement.querySelector('.element__image').src = popupInputs.elementImage;
+  newElement.querySelector('.element__image').alt = popupInputs.elementText;
+  newElement.querySelector('.element__text').textContent = popupInputs.elementText;
+  elementsList.prepend(newElement);
 
-  elementsList.append(element);
-})
+}
+
+openElement(elements);
 
 buttonEdit.addEventListener('click', openPopup);
 
 buttonAdd.addEventListener('click', openPopup);
-
-buttonCancel.addEventListener ('click', disabledPopup);
 
