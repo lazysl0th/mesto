@@ -7,24 +7,42 @@ const forms = [
   {
     formName: 'popupFormEditProfile',
     formHeading: 'Редактирование профиля',
-    firstInputName: 'profileName',
-    secondInputName: 'profileAbout',
-    firstPlaceholderName: '',
-    secondPlaceholderName: '',
-    firstInputValue: '',
-    secondInputValue: '',
+    inputName:
+    {
+      1: 'profileName',
+      2: 'profileAbout',
+    },
+    placeholderName:
+    {
+      1: '',
+      2: '',
+    },
+    inputValue:
+    {
+      1: '',
+      2: '',
+    },
     buttonText: 'Сохранить',
     buttonName: 'button-edit',
   },
   {
     formName: 'popupFormAddElement',
     formHeading: 'Новое место',
-    firstInputName: 'elementText',
-    secondInputName: 'elementImage',
-    firstPlaceholderName: 'Название',
-    secondPlaceholderName: 'Ссылка на картинку',
-    firstInputValue: '',
-    secondInputValue: '',
+    inputName:
+    {
+      1: 'elementText',
+      2: 'elementImage',
+    },
+    placeholderName:
+    {
+      1: 'Название',
+      2: 'Ссылка на картинку',
+    },
+    inputValue:
+    {
+      1: '',
+      2: '',
+    },
     buttonText: 'Создать',
     buttonName: 'button-add',
   },
@@ -71,26 +89,28 @@ function openPopup (evt) {
 }
 
 function createForm(forms, buttonName) {
-  form = forms.filter((item) => (item.buttonName === buttonName));
-  if (buttonName === 'button-edit') {
-    form[0].firstInputValue = content.querySelector('.profile__name').textContent;
-    form[0].secondInputValue = content.querySelector('.profile__about').textContent;
-  }
   const popupFormTemplate = document.querySelector('#popup__form-template').content;
   const popupForm = popupFormTemplate.querySelector('.popup__form').cloneNode(true);
+  const popupItems = popupForm.querySelectorAll('.popup__item');
+  const popupInputs = Array.from(popupForm.querySelectorAll('.popup__item'));
+
+  form = forms.filter((item) => (item.buttonName === buttonName));
+
+  if (buttonName === 'button-edit') {
+    form[0].inputValue[1] = content.querySelector('.profile__name').textContent;
+    form[0].inputValue[2] = content.querySelector('.profile__about').textContent;
+  }
 
   form.forEach(function(item){
     popupForm.name = item.formName;
     popupForm.querySelector('.popup__heading').textContent = item.formHeading;
-    popupForm.querySelector('.popup__item_first-input').name = item.firstInputName;
-    popupForm.querySelector('.popup__item_first-input').value = item.firstInputValue;
-    popupForm.querySelector('.popup__item_first-input').placeholder = item.firstPlaceholderName;
-    popupForm.querySelector('.popup__item_second-input').name = item.secondInputName;
-    popupForm.querySelector('.popup__item_second-input').value = item.secondInputValue;
-    popupForm.querySelector('.popup__item_second-input').placeholder = item.secondPlaceholderName;
+    Array.from(popupForm.querySelectorAll('.popup__item')).forEach(function(input, index) {
+      input.name = item.inputName[index + 1];
+      input.value = item.inputValue[index + 1];
+      input.placeholder = item.placeholderName[index + 1];
+    });
     popup.prepend(popupForm);
   });
-
   popupForm.addEventListener('submit', formSubmitHandler);
 }
 
@@ -103,7 +123,6 @@ function formSubmitHandler(evt) {
   evt.preventDefault();
   const popupItems = popup.querySelectorAll('.popup__item');
   popupInputs = Array.from(popupItems).reduce((previousValue, item) => ({[previousValue.name]: previousValue.value, [item.name]: item.value,}));
-  console.log(popupInputs);
   if (popup.querySelector('.popup__form').name === 'popupFormEditProfile') {
       content.querySelector('.profile__name').textContent = popupInputs.profileName;
       content.querySelector('.profile__about').textContent = popupInputs.profileAbout;
@@ -120,6 +139,7 @@ function openElement(elements) {
     element.querySelector('.element__image').src = el.elementImage;
     element.querySelector('.element__image').alt = el.elementText;
     element.querySelector('.element__text').textContent = el.elementText;
+    element.querySelector('.element__button-like').addEventListener('click', likeElement);
     elementsList.append(element);
   })
 }
@@ -129,8 +149,12 @@ function addElement(popupInputs) {
   newElement.querySelector('.element__image').src = popupInputs.elementImage;
   newElement.querySelector('.element__image').alt = popupInputs.elementText;
   newElement.querySelector('.element__text').textContent = popupInputs.elementText;
+  newElement.querySelector('.element__button-like').addEventListener('click', likeElement);
   elementsList.prepend(newElement);
+}
 
+function likeElement(evt) {
+  evt.target.classList.toggle('element__button-like_active');
 }
 
 openElement(elements);
