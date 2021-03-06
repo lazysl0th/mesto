@@ -4,12 +4,8 @@
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-@media screen and (max-width: 1262px) {
-  .elements__list {
-    justify-content: space-around;
-  }
+  justify-content: space-evenly;
+  row-gap: 20px;
+  column-gap: 17px;
 }
 

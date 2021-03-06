@@ -2,10 +2,10 @@
   background-color: #FFF;
   border-radius: 10px;
   overflow: hidden;
-  margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
   flex-basis: 282px;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+  position: relative;
 }

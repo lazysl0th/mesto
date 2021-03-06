@@ -136,6 +136,7 @@ function formSubmitHandler(evt) {
 function openElement(elements) {
   elements.forEach(function (el) {
     const element = elementTemplate.querySelector('.element').cloneNode(true);
+    element.querySelector('.element__button-delete').addEventListener('click', deleteElement);
     element.querySelector('.element__image').src = el.elementImage;
     element.querySelector('.element__image').alt = el.elementText;
     element.querySelector('.element__text').textContent = el.elementText;
@@ -146,6 +147,7 @@ function openElement(elements) {
 
 function addElement(popupInputs) {
   const newElement = elementTemplate.querySelector('.element').cloneNode(true);
+  newElement.querySelector('.element__button-delete').addEventListener('click', deleteElement);
   newElement.querySelector('.element__image').src = popupInputs.elementImage;
   newElement.querySelector('.element__image').alt = popupInputs.elementText;
   newElement.querySelector('.element__text').textContent = popupInputs.elementText;
@@ -155,6 +157,11 @@ function addElement(popupInputs) {
 
 function likeElement(evt) {
   evt.target.classList.toggle('element__button-like_active');
+}
+
+function deleteElement(evt) {
+  const element = evt.target.closest(`.${evt.target.parentElement.className}`)
+  element.remove();
 }
 
 openElement(elements);

@@ -44,13 +44,15 @@
 @import "../blocs/elements/__list/elements__list.css";
 /*element*/
 @import "../blocs/element/element.css";
+/*element__button-delete*/
+@import "../blocs/element/__button-delete/element__button-delete.css";
 /*element__image*/
 @import "../blocs/element/__image/element__image.css";
 /*element__text*/
 @import "../blocs/element/__text/element__text.css";
-/*element__button*/
+/*element__button-like*/
 @import "../blocs/element/__button-like/element__button-like.css";
-/*element__button_disabled*/
+/*element__button-like_active*/
 @import "../blocs/element/__button-like/_active/element__button-like_active.css";
 /*footer*/
 @import "../blocs/footer/footer.css";
