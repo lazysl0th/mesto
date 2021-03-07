@@ -5,7 +5,7 @@
   display: flex;
   flex-wrap: wrap;
   flex-basis: 282px;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   position: relative;
 }

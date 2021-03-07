@@ -1,7 +1,22 @@
+const elementTemplate = document.querySelector('#element-template').content;
 const content = document.querySelector('.content');
 const buttonEdit = content.querySelector('.profile__button-edit');
 const buttonAdd = content.querySelector('.profile__button-add');
 const popup = content.querySelector('.popup');
+const elementsList = content.querySelector('.elements__list');
+
+const popups = [
+  {
+    type: 'image',
+    className: 'popup_type_figure',
+    buttons: [''],
+  },
+  {
+    type: 'form',
+    className: 'popup_type_form',
+    buttons: ['button-edit', 'button-add',]
+  },
+];
 
 const forms = [
   {
@@ -48,9 +63,6 @@ const forms = [
   },
 ];
 
-const elementTemplate = document.querySelector('#element-template').content;
-const elementsList = document.querySelector('.elements__list');
-
 const elements = [
   {
     elementText: 'гора Архыз, Карачаево-Черкессия',
@@ -79,43 +91,59 @@ const elements = [
 ];
 
 function openPopup (evt) {
+  const target = evt.target;
   const buttonCancel = popup.querySelector('.popup__button-cancel');
-  const buttonName = evt.target.name;
+  const popupType = popups.filter((popup) => (Array.from(popup.buttons).find((button) => (button.includes(target.name))) || '') === target.name);
 
-  createForm(forms, buttonName);
+  Array.from(popupType).forEach ((type) => (popup.classList.add(type.className)));
 
+  if (target.name) {
+    createForm(forms, target, popupType);
+  }
+  else {
+    createFigure(target, popupType)
+  }
   buttonCancel.addEventListener ('click', disabledPopup);
   return popup.classList.remove('popup_disabled');
 }
 
-function createForm(forms, buttonName) {
+function createForm(forms, target, popupType) {
   const popupFormTemplate = document.querySelector('#popup__form-template').content;
-  const popupForm = popupFormTemplate.querySelector('.popup__form').cloneNode(true);
+  const popupForm = popupFormTemplate.querySelector('.popup__content').cloneNode(true);
   const popupItems = popupForm.querySelectorAll('.popup__item');
   const popupInputs = Array.from(popupForm.querySelectorAll('.popup__item'));
+  const form = forms.filter((form) => (form.buttonName === target.name));
 
-  form = forms.filter((item) => (item.buttonName === buttonName));
-
-  if (buttonName === 'button-edit') {
+  if (target.name === 'button-edit') {
     form[0].inputValue[1] = content.querySelector('.profile__name').textContent;
     form[0].inputValue[2] = content.querySelector('.profile__about').textContent;
   }
 
-  form.forEach(function(item){
-    popupForm.name = item.formName;
-    popupForm.querySelector('.popup__heading').textContent = item.formHeading;
+  form.forEach(function(form){
+    popupForm.name = form.formName;
+    popupForm.querySelector('.popup__heading').textContent = form.formHeading;
     Array.from(popupForm.querySelectorAll('.popup__item')).forEach(function(input, index) {
-      input.name = item.inputName[index + 1];
-      input.value = item.inputValue[index + 1];
-      input.placeholder = item.placeholderName[index + 1];
+      input.name = form.inputName[index + 1];
+      input.value = form.inputValue[index + 1];
+      input.placeholder = form.placeholderName[index + 1];
     });
     popup.prepend(popupForm);
   });
   popupForm.addEventListener('submit', formSubmitHandler);
 }
 
+function createFigure(target, popupType) {
+  const popupFigureTemplate = document.querySelector('#popup__figure-template').content;
+  const popupFigure = popupFigureTemplate.querySelector('.popup__content').cloneNode(true);
+  popupFigure.querySelector('.popup__image').src = target.src;
+  popupFigure.querySelector('.popup__text').textContent = target.alt;
+  popup.prepend(popupFigure);
+}
+
 function disabledPopup() {
-  popup.querySelector('.popup__form').remove();
+  const popupTypeClass = popups.map((popup) => (popup.className));
+  popupTypeClass.forEach((className) => (popup.classList.remove(className)));
+  /*popup.querySelector('.popup__content').remove();*/
   return popup.classList.add('popup_disabled');
 }
 
@@ -123,7 +151,7 @@ function formSubmitHandler(evt) {
   evt.preventDefault();
   const popupItems = popup.querySelectorAll('.popup__item');
   popupInputs = Array.from(popupItems).reduce((previousValue, item) => ({[previousValue.name]: previousValue.value, [item.name]: item.value,}));
-  if (popup.querySelector('.popup__form').name === 'popupFormEditProfile') {
+  if (popup.querySelector('.popup__content').name === 'popupFormEditProfile') {
       content.querySelector('.profile__name').textContent = popupInputs.profileName;
       content.querySelector('.profile__about').textContent = popupInputs.profileAbout;
     }
@@ -140,6 +168,7 @@ function openElement(elements) {
     element.querySelector('.element__image').src = el.elementImage;
     element.querySelector('.element__image').alt = el.elementText;
     element.querySelector('.element__text').textContent = el.elementText;
+    element.querySelector('.element__image').addEventListener('click', openPopup);
     element.querySelector('.element__button-like').addEventListener('click', likeElement);
     elementsList.append(element);
   })
@@ -151,6 +180,7 @@ function addElement(popupInputs) {
   newElement.querySelector('.element__image').src = popupInputs.elementImage;
   newElement.querySelector('.element__image').alt = popupInputs.elementText;
   newElement.querySelector('.element__text').textContent = popupInputs.elementText;
+  newElement.querySelector('.element__image').addEventListener('click', openPopup);
   newElement.querySelector('.element__button-like').addEventListener('click', likeElement);
   elementsList.prepend(newElement);
 }
