@@ -26,16 +26,12 @@
 @import "../blocs/profile/__button-add/profile__button-add.css";
 /*popup*/
 @import "../blocs/popup/popup.css";
-/*popup_disabled*/
-@import "../blocs/popup/_disabled/popup_disabled.css";
 /*popup_type_form*/
 @import "../blocs/popup/_type/popup_type_form.css";
 /*popup_type_figure*/
 @import "../blocs/popup/_type/popup_type_figure.css";
 /*popup__content*/
 @import "../blocs/popup/__content/popup__content.css";
-/*popup__content_disabled*/
-@import "../blocs/popup/__content/_disabled/popup__content_disabled.css";
 /*popup__content_type_form*/
 @import "../blocs/popup/__content/_type/popup__content_type_form.css";
 /*popup__content_type_figure*/
@@ -52,6 +48,8 @@
 @import "../blocs/popup/__button-save/popup__button-save.css";
 /*popup__button-cancel*/
 @import "../blocs/popup/__button-cancel/popup__button-cancel.css";
+/*popup-visible*/
+@import "../blocs/popup-visible/popup-visible.css";
 /*elements*/
 @import "../blocs/elements/elements.css";
 /*elements__list*/

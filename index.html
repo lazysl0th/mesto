@@ -22,21 +22,21 @@
         <button type="button" name="button-add" class="profile__button-add"></button>
       </section>
 
-      <div class="popup popup_disabled">
+      <div class="popup">
 
-        <figure class="popup__content popup__content_type_figure popup__content_disabled">
+        <figure class="popup__content popup__content_type_figure">
           <img class="popup__image" src="" alt="">
           <figcaption class="popup__text"></figcaption>
         </figure>
 
-        <form name="popupFormAddElement" class="popup__content popup__content_type_form popup__content_disabled" >
+        <form name="popupFormAddElement" id="button-add" class="popup__content popup__content_type_form" >
           <h2 class="popup__heading">Новое место</h2>
           <input type="text" name="elementText" class="popup__item" placeholder="Название">
           <input type="text" name="elementImage" class="popup__item" placeholder="Ссылка на картинку">
           <button type="submit" name="button-save" class="popup__button-save">Сохранить</button>
         </form>
 
-        <form name="popupFormEditProfile" class="popup__content popup__content_type_form popup__content_disabled">
+        <form name="popupFormEditProfile" id="button-edit" class="popup__content popup__content_type_form">
           <h2 class="popup__heading">Редактирование профиля</h2>
           <input type="text" name="profileName" class="popup__item" placeholder="">
           <input type="text" name="profileAbout" class="popup__item" placeholder="">
@@ -66,7 +66,7 @@
       </li>
     </template>
 
-    <template id="popup__form-template">
+    <!--<template id="popup__form-template">
        <form name="" class="popup__content popup__content_type_form">
           <h2 class="popup__heading"></h2>
           <input type="text" name="" class="popup__item" placeholder="">
@@ -80,7 +80,7 @@
         <img class="popup__image" src="" alt="">
         <figcaption class="popup__text">Софийский собор</figcaption>
       </figure>
-    </template>
+    </template>-->
     <script src="./scripts/popup.js"></script>
   </body>
 </html>

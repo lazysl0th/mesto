@@ -1,9 +1,6 @@
 .popup__content_type_form {
   max-width: 430px;
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
   background-color: white;
   border-radius: 10px;
   padding: 36px;
