@@ -72,7 +72,7 @@ function openElement(card, place) {
 function formEditSubmitHandler(evt) {
   evt.preventDefault();
   const formItems = formEditProfile.querySelectorAll('.popup__item');
-  formInputs = Array.from(formItems).reduce((previousValue, item) => ({[previousValue.name]: previousValue.value, [item.name]: item.value,}));
+  const formInputs = Array.from(formItems).reduce((previousValue, item) => ({[previousValue.name]: previousValue.value, [item.name]: item.value,}));
   content.querySelector('.profile__name').textContent = formInputs.profileName;
   content.querySelector('.profile__about').textContent = formInputs.profileAbout;
   console.log(formEditProfile);
@@ -82,7 +82,7 @@ function formEditSubmitHandler(evt) {
 function formAddSubmitHandler(evt) {
   evt.preventDefault();
   const formItems = formAddElement.querySelectorAll('.popup__item');
-  formInputs = Array.from(formItems).reduce((previousValue, item) => ({[previousValue.name]: previousValue.value, [item.name]: item.value,}));
+  const formInputs = Array.from(formItems).reduce((previousValue, item) => ({[previousValue.name]: previousValue.value, [item.name]: item.value,}));
   elementsList.prepend(createElement(formInputs));
   formItems.forEach((item) => (item.value = ''));
   hidePopup(popupAddElement);
