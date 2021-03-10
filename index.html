@@ -22,28 +22,32 @@
         <button type="button" name="button-add" class="profile__button-add"></button>
       </section>
 
-      <div class="popup">
+      <div class="popup popup_type_form popup_form_edit-profile">
+        <form name="popupFormEditProfile" id="form-edit-profile" class="popup__content popup__content_type_form">
+          <h2 class="popup__heading">Редактирование профиля</h2>
+          <input type="text" name="name" class="popup__item" placeholder="">
+          <input type="text" name="about" class="popup__item" placeholder="">
+          <button type="submit" name="button-save" class="popup__button-save">Сохранить</button>
+        </form>
+        <button type="button" name="button-cancel" class="popup__button-cancel popup__button-cancel_type_edit-profile"></button>
+      </div>
 
+      <div class="popup popup_type_form popup_form_add-element">
+        <form name="popupFormAddElement" id="form-add-element" class="popup__content popup__content_type_form" >
+          <h2 class="popup__heading">Новое место</h2>
+          <input type="text" name="name" class="popup__item" placeholder="Название">
+          <input type="text" name="link" class="popup__item" placeholder="Ссылка на картинку">
+          <button type="submit" name="button-save" class="popup__button-save">Сохранить</button>
+        </form>
+        <button type="button" name="button-cancel" class="popup__button-cancel popup__button-cancel_type_add-element"></button>
+      </div>
+
+      <div class="popup popup_type_figure">
         <figure class="popup__content popup__content_type_figure">
           <img class="popup__image" src="#" alt=" ">
           <figcaption class="popup__text"></figcaption>
         </figure>
-
-        <form name="popupFormAddElement" id="button-add" class="popup__content popup__content_type_form" >
-          <h2 class="popup__heading">Новое место</h2>
-          <input type="text" name="elementText" class="popup__item" placeholder="Название">
-          <input type="text" name="elementImage" class="popup__item" placeholder="Ссылка на картинку">
-          <button type="submit" name="button-save" class="popup__button-save">Сохранить</button>
-        </form>
-
-        <form name="popupFormEditProfile" id="button-edit" class="popup__content popup__content_type_form">
-          <h2 class="popup__heading">Редактирование профиля</h2>
-          <input type="text" name="profileName" class="popup__item" placeholder="">
-          <input type="text" name="profileAbout" class="popup__item" placeholder="">
-          <button type="submit" name="button-save" class="popup__button-save">Сохранить</button>
-        </form>
-
-        <button type="button" name="button-cancel" class="popup__button-cancel"></button>
+        <button type="button" name="button-cancel" class="popup__button-cancel popup__button-cancel_type_figure"></button>
       </div>
 
       <section class="elements">
@@ -65,6 +69,7 @@
         <button type="button" name="button-like" class="element__button-like"></button>
       </li>
     </template>
+    <script src="./scripts/initial-card.js"></script>
     <script src="./scripts/popup.js"></script>
   </body>
 </html>
