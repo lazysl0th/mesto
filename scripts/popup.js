@@ -17,11 +17,11 @@ const element = elementTemplate.querySelector('.element');
 
 
 function showPopup(popup) {
-  popup.classList.add('popup-visible');
+  popup.classList.add('popup_visible');
 }
 
 function hidePopup(popup) {
-  popup.classList.remove('popup-visible');
+  popup.classList.remove('popup_visible');
 }
 
 function likeElement(evt) {
