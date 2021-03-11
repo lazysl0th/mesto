@@ -1,11 +1,17 @@
 const content = document.querySelector('.content');
+const profileName = content.querySelector('.profile__name');
+const profileAbout = content.querySelector('.profile__about');
 const buttonEdit = content.querySelector('.profile__button-edit');
 const buttonAdd = content.querySelector('.profile__button-add');
 const popupEditProfile = content.querySelector('.popup_form_edit-profile');
 const formEditProfile = popupEditProfile.querySelector('.popup__content_type_form');
+const formEditInputName = popupEditProfile.querySelector('.popup__item_name');
+const formEditInputAbout = popupEditProfile.querySelector('.popup__item_about');
 const buttonCancelEditProfile = popupEditProfile.querySelector('.popup__button-cancel_type_edit-profile');
 const popupAddElement = content.querySelector('.popup_form_add-element');
 const formAddElement = popupAddElement.querySelector('.popup__content_type_form');
+const formAddInputName = popupAddElement.querySelector('.popup__item_name');
+const formAddInputLink = popupAddElement.querySelector('.popup__item_link');
 const buttonCancelAddElement = popupAddElement.querySelector('.popup__button-cancel_type_add-element');
 const popupFigure = content.querySelector('.popup_type_figure');
 const popupFigureImage = content.querySelector('.popup__image');
@@ -33,9 +39,9 @@ function deleteElement(evt) {
 }
 
 function showFormEditProfile() {
+  formEditInputName.value = profileName.textContent;
+  formEditInputAbout.value = profileAbout.textContent;
   showPopup(popupEditProfile);
-  popupEditProfile.querySelectorAll('.popup__item')[0].value = content.querySelector('.profile__name').textContent;
-  popupEditProfile.querySelectorAll('.popup__item')[1].value = content.querySelector('.profile__about').textContent;
 }
 
 function showFormAddElement() {
@@ -44,6 +50,7 @@ function showFormAddElement() {
 
 function showFigure(card) {
   popupFigureImage.src = card.link;
+  popupFigureImage.alt = card.name;
   popupFigcap.textContent = card.name;
   showPopup(popupFigure);
 }
@@ -65,30 +72,28 @@ function createElement(card) {
   return newElement;
 }
 
-function openElement(card, place) {
-  place.append(createElement(card));
+function renderElement(card, place) {
+  place.prepend(createElement(card));
 }
 
 function formEditSubmitHandler(evt) {
   evt.preventDefault();
-  const formItems = formEditProfile.querySelectorAll('.popup__item');
-  const formInputs = Array.from(formItems).reduce((previousValue, item) => ({[previousValue.name]: previousValue.value, [item.name]: item.value,}));
-  content.querySelector('.profile__name').textContent = formInputs.profileName;
-  content.querySelector('.profile__about').textContent = formInputs.profileAbout;
-  console.log(formEditProfile);
+  profileName.textContent = formEditInputName.value;
+  profileAbout.textContent = formEditInputAbout.value;
   hidePopup(popupEditProfile);
 }
 
 function formAddSubmitHandler(evt) {
   evt.preventDefault();
-  const formItems = formAddElement.querySelectorAll('.popup__item');
-  const formInputs = Array.from(formItems).reduce((previousValue, item) => ({[previousValue.name]: previousValue.value, [item.name]: item.value,}));
-  elementsList.prepend(createElement(formInputs));
-  formItems.forEach((item) => (item.value = ''));
+  renderElement({
+    name: formAddInputName.value,
+    link: formAddInputLink.value
+  }, elementsList);
+  formAddElement.reset();
   hidePopup(popupAddElement);
 }
 
-initialCards.forEach((card) => (openElement(card, elementsList)));
+initialCards.forEach((card) => (renderElement(card, elementsList)));
 
 buttonEdit.addEventListener('click', showFormEditProfile);
 
