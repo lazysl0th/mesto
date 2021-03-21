@@ -42,12 +42,20 @@
 @import "../blocs/popup/__heading/popup__heading.css";
 /*popup__item*/
 @import "../blocs/popup/__item/popup__item.css";
+/*popup__item_type_error*/
+@import "../blocs/popup/__item/_type/popup__item_type_error.css";
+/*popup__error*/
+@import "../blocs/popup/__error/popup__error.css";
+/*popup__error_active*/
+@import "../blocs/popup/__error/_active/popup__error_active.css";
 /*popup__image*/
 @import "../blocs/popup/__image/popup__image.css";
 /*popup__text*/
 @import "../blocs/popup/__text/popup__text.css";
 /*popup__button-save*/
 @import "../blocs/popup/__button-save/popup__button-save.css";
+/*popup__button-save_disabled*/
+@import "../blocs/popup/__button-save/_disabled/popup__button-save_disabled.css";
 /*popup__button-cancel*/
 @import "../blocs/popup/__button-cancel/popup__button-cancel.css";
 /*elements*/

@@ -21,33 +21,39 @@ const elementsList = content.querySelector('.elements__list');
 const elementTemplate = document.querySelector('#element-template').content;
 const element = elementTemplate.querySelector('.element');
 
-
+/*Открытие попапа*/
 function showPopup(popup) {
   popup.classList.add('popup_visible');
 }
 
+/*Закрытие попапа*/
 function hidePopup(popup) {
   popup.classList.remove('popup_visible');
 }
 
+/*like-элемента*/
 function likeElement(evt) {
   evt.target.classList.toggle('element__button-like_active');
 }
 
+/*удаление элемента*/
 function deleteElement(evt) {
   evt.target.closest('.element').remove();
 }
 
+/*показ формы редактирования профиля*/
 function showFormEditProfile() {
   formEditInputName.value = profileName.textContent;
   formEditInputAbout.value = profileAbout.textContent;
   showPopup(popupEditProfile);
 }
 
+/*показ формы добавленя элемента*/
 function showFormAddElement() {
   showPopup(popupAddElement);
 }
 
+/*показ картинки*/
 function showFigure(card) {
   popupFigureImage.src = card.link;
   popupFigureImage.alt = card.name;
@@ -55,6 +61,7 @@ function showFigure(card) {
   showPopup(popupFigure);
 }
 
+/*создание элемента*/
 function createElement(card) {
   const newElement = element.cloneNode(true);
   const buttonDelete = newElement.querySelector('.element__button-delete');
@@ -72,19 +79,20 @@ function createElement(card) {
   return newElement;
 }
 
+/*отрисовка элемента*/
 function renderElement(card, place) {
   place.prepend(createElement(card));
 }
 
-function formEditSubmitHandler(evt) {
-  evt.preventDefault();
+/*обработка формы редактирования профиля*/
+function formEditSubmitHandler() {
   profileName.textContent = formEditInputName.value;
   profileAbout.textContent = formEditInputAbout.value;
   hidePopup(popupEditProfile);
 }
 
-function formAddSubmitHandler(evt) {
-  evt.preventDefault();
+/*обработка формы добавления элемента*/
+function formAddSubmitHandler() {
   renderElement({
     name: formAddInputName.value,
     link: formAddInputLink.value
@@ -93,6 +101,7 @@ function formAddSubmitHandler(evt) {
   hidePopup(popupAddElement);
 }
 
+/*заполнение страницы*/
 initialCards.forEach((card) => (renderElement(card, elementsList)));
 
 buttonEdit.addEventListener('click', showFormEditProfile);
