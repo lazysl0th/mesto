@@ -3,6 +3,7 @@ const profileName = content.querySelector('.profile__name');
 const profileAbout = content.querySelector('.profile__about');
 const buttonEdit = content.querySelector('.profile__button-edit');
 const buttonAdd = content.querySelector('.profile__button-add');
+const popups = content.querySelectorAll('.popup');
 const popupEditProfile = content.querySelector('.popup_form_edit-profile');
 const formEditProfile = popupEditProfile.querySelector('.popup__content_type_form');
 const formEditInputName = popupEditProfile.querySelector('.popup__item_name');
@@ -104,6 +105,20 @@ function formAddSubmitHandler() {
 /*заполнение страницы*/
 initialCards.forEach((card) => (renderElement(card, elementsList)));
 
+Array.from(popups).forEach(function(popup){
+  popup.addEventListener('click', function(evt){
+    if(evt.target.classList.contains('popup__button-cancel') || evt.target.classList.contains('popup')){
+      hidePopup(popup);
+    }
+  });
+
+  document.addEventListener('keydown', function(evt){
+    if (evt.key === 'Escape') {
+      hidePopup(popup);
+    }
+  });
+});
+
 buttonEdit.addEventListener('click', showFormEditProfile);
 
 buttonAdd.addEventListener('click', showFormAddElement);
@@ -112,9 +127,4 @@ formEditProfile.addEventListener('submit', formEditSubmitHandler);
 
 formAddElement.addEventListener('submit', formAddSubmitHandler);
 
-buttonCancelEditProfile.addEventListener ('click', () => hidePopup(popupEditProfile));
-
-buttonCancelAddElement.addEventListener ('click', () => hidePopup(popupAddElement));
-
-buttonCancelFigure.addEventListener ('click', () => hidePopup(popupFigure));
 
