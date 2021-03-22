@@ -26,11 +26,21 @@ const element = elementTemplate.querySelector('.element');
 /*Открытие попапа*/
 function showPopup(popup) {
   popup.classList.add('popup_visible');
+  document.addEventListener('keydown', closeByEscape);
 }
 
 /*Закрытие попапа*/
 function hidePopup(popup) {
   popup.classList.remove('popup_visible');
+  document.removeEventListener('keydown', closeByEscape);
+}
+
+/*Закрытие popup кнопкой Esc*/
+const closeByEscape = (evt) => {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_visible');
+    hidePopup(openedPopup);
+  }
 }
 
 /*like-элемента*/
@@ -112,12 +122,6 @@ initialCards.forEach((card) => (renderElement(card, elementsList)));
 Array.from(popups).forEach(function(popup){
   popup.addEventListener('click', function(evt){
     if(evt.target.classList.contains('popup__button-cancel') || evt.target.classList.contains('popup')){
-      hidePopup(popup);
-    }
-  });
-
-  document.addEventListener('keydown', function(evt){
-    if (evt.key === 'Escape') {
       hidePopup(popup);
     }
   });
