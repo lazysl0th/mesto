@@ -38,17 +38,15 @@ const checkInput = (form, formInput, inputErrorClass, errorClass) => {
 }
 
 /*проверить наличие невалидных полей*/
-const hasInvalidInput = (inputList) => {
-  return inputList.some(input => !input.validity.valid);
-}
+const hasInvalidInput = (inputList) => (inputList.some(input => !input.validity.valid));
 
 /*установить состояние кнопки*/
 const setStateButtonSave = (inputList, buttonSave, inactiveButtonClass) => {
-  if (!hasInvalidInput(inputList)  ) {
-    buttonSave.removeAttribute('disabled');
+  if (!hasInvalidInput(inputList)) {
+    buttonSave.disabled = false;
     buttonSave.classList.remove(inactiveButtonClass);
   } else {
-    buttonSave.setAttribute('disabled', true);
+    buttonSave.disabled = true;
     buttonSave.classList.add(inactiveButtonClass);
   }
 }
@@ -63,6 +61,7 @@ const setInputListeners = (form, inputSelector, submitButtonSelector, inactiveBu
       setStateButtonSave(inputList, buttonSave, inactiveButtonClass);
     });
   })
+  setStateButtonSave(inputList, buttonSave, inactiveButtonClass);
 }
 
 /*валидация форм*/

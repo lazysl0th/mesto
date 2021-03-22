@@ -8,6 +8,7 @@ const popupEditProfile = content.querySelector('.popup_form_edit-profile');
 const formEditProfile = popupEditProfile.querySelector('.popup__content_type_form');
 const formEditInputName = popupEditProfile.querySelector('.popup__item_name');
 const formEditInputAbout = popupEditProfile.querySelector('.popup__item_about');
+const formEditButtonSave = popupEditProfile.querySelector('.popup__button-save');
 const buttonCancelEditProfile = popupEditProfile.querySelector('.popup__button-cancel_type_edit-profile');
 const popupAddElement = content.querySelector('.popup_form_add-element');
 const formAddElement = popupAddElement.querySelector('.popup__content_type_form');
@@ -46,6 +47,9 @@ function deleteElement(evt) {
 function showFormEditProfile() {
   formEditInputName.value = profileName.textContent;
   formEditInputAbout.value = profileAbout.textContent;
+  checkInput(formEditProfile, formEditInputName, validationSetting.inputErrorClass, validationSetting.errorClass);
+  checkInput(formEditProfile, formEditInputAbout, validationSetting.inputErrorClass, validationSetting.errorClass);
+  setStateButtonSave([formEditInputName, formEditInputAbout], formEditButtonSave, validationSetting.inactiveButtonClass);
   showPopup(popupEditProfile);
 }
 
