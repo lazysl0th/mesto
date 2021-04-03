@@ -1,4 +1,7 @@
-const content = document.querySelector('.content');
+import { initialCards } from './initial-card.js';
+import { content } from './utils.js';
+import Card from './Card.js';
+
 const profileName = content.querySelector('.profile__name');
 const profileAbout = content.querySelector('.profile__about');
 const buttonEdit = content.querySelector('.profile__button-edit');
@@ -16,8 +19,8 @@ const formAddInputName = popupAddElement.querySelector('.popup__item_name');
 const formAddInputLink = popupAddElement.querySelector('.popup__item_link');
 const buttonCancelAddElement = popupAddElement.querySelector('.popup__button-cancel_type_add-element');
 const popupFigure = content.querySelector('.popup_type_figure');
-const popupFigureImage = content.querySelector('.popup__image');
-const popupFigcap = content.querySelector('.popup__text');
+
+
 const buttonCancelFigure = popupFigure.querySelector('.popup__button-cancel');
 const elementsList = content.querySelector('.elements__list');
 const elementTemplate = document.querySelector('#element-template').content;
@@ -31,16 +34,6 @@ function showPopup(popup) {
 /*Закрытие попапа*/
 function hidePopup(popup) {
   popup.classList.remove('popup_visible');
-}
-
-/*like-элемента*/
-function likeElement(evt) {
-  evt.target.classList.toggle('element__button-like_active');
-}
-
-/*удаление элемента*/
-function deleteElement(evt) {
-  evt.target.closest('.element').remove();
 }
 
 /*показ формы редактирования профиля*/
@@ -58,35 +51,9 @@ function showFormAddElement() {
   showPopup(popupAddElement);
 }
 
-/*показ картинки*/
-function showFigure(card) {
-  popupFigureImage.src = card.link;
-  popupFigureImage.alt = card.name;
-  popupFigcap.textContent = card.name;
-  showPopup(popupFigure);
-}
-
-/*создание элемента*/
-function createElement(card) {
-  const newElement = element.cloneNode(true);
-  const buttonDelete = newElement.querySelector('.element__button-delete');
-  const elementImage = newElement.querySelector('.element__image');
-  const elementText = newElement.querySelector('.element__text');
-  const buttonLike = newElement.querySelector('.element__button-like');
-
-  elementImage.src = card.link;
-  elementImage.alt = card.name;
-  elementText.textContent = card.name;
-
-  buttonDelete.addEventListener('click', deleteElement);
-  elementImage.addEventListener('click', () => showFigure(card));
-  buttonLike.addEventListener('click', likeElement);
-  return newElement;
-}
-
 /*отрисовка элемента*/
 function renderElement(card, place) {
-  place.prepend(createElement(card));
+  place.prepend(new Card(card).generateElement());
 }
 
 /*обработка формы редактирования профиля*/
@@ -107,7 +74,7 @@ function formAddSubmitHandler() {
 }
 
 /*заполнение страницы*/
-initialCards.forEach((card) => (renderElement(card, elementsList)));
+initialCards.forEach ((card) => (renderElement(card, elementsList)));
 
 Array.from(popups).forEach(function(popup){
   popup.addEventListener('click', function(evt){
@@ -130,5 +97,3 @@ buttonAdd.addEventListener('click', showFormAddElement);
 formEditProfile.addEventListener('submit', formEditSubmitHandler);
 
 formAddElement.addEventListener('submit', formAddSubmitHandler);
-
-
