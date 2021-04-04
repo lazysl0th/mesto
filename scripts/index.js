@@ -25,6 +25,12 @@ Array.from(popups).forEach(function(popup){
     }
   });
 
+  document.addEventListener('keydown', function(evt){
+    if (evt.key === 'Escape') {
+      hidePopup(popup);
+    }
+  });
+
 });
 
 buttonEdit.addEventListener('click', showFormEditProfile);
