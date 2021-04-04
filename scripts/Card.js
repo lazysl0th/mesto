@@ -1,10 +1,11 @@
- import  { element, popupFigure, popupFigureImage, popupFigcap, showPopup } from './utils.js';
+ import  { elementTemplate, popupFigure, popupFigureImage, popupFigcap, showPopup } from './utils.js';
 
  export default class Card {
-  constructor (card) {
+  constructor (card, elementTemplate) {
     this._elementImageSrc = card.link;
     this._elementImageAlt = card.name;
     this._elementText = card.name;
+    this._elementTemplate = elementTemplate
   }
 
   _showElement(){
@@ -37,7 +38,7 @@
   }
 
   _getTemplateElement() {
-    const newElement = element.cloneNode(true);
+    const newElement = elementTemplate.querySelector('.element').cloneNode(true);
     return newElement;
   }
 
