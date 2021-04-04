@@ -1,4 +1,5 @@
- import  { element, popupFigure, popupFigureImage, popupFigcap } from './utils.js';
+ import  { element, popupFigure, popupFigureImage, popupFigcap, showPopup } from './utils.js';
+
  export default class Card {
   constructor (card) {
     this._elementImageSrc = card.link;
