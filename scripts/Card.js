@@ -1,53 +1,48 @@
- import  { elementTemplate, popupFigure, popupFigureImage, popupFigcap, showPopup } from './utils.js';
-
- export default class Card {
-  constructor (card, elementTemplate) {
+export default class Card {
+  constructor (card, templateSelector, showElement) {
     this._elementImageSrc = card.link;
     this._elementImageAlt = card.name;
     this._elementText = card.name;
-    this._elementTemplate = elementTemplate
-  }
-
-  _showElement(){
-    popupFigureImage.src = this._elementImageSrc;
-    popupFigureImage.alt = this._elementImageAlt;
-    popupFigcap.textContent = this._elementText;
-    showPopup(popupFigure);
+    this._templateSelector = templateSelector;
+    this._showElement = showElement;
+    this._newElement = this._getElement();
+    this._elementImage = this._newElement.querySelector('.element__image');
+    this._buttonLike = this._newElement.querySelector('.element__button-like');
+    this._buttonDelete = this._newElement.querySelector('.element__button-delete');
   }
 
   _deleteElement(){
-    this._element.querySelector('.element__button-delete').closest('.element').remove();
+    this._buttonDelete.closest('.element').remove();
   }
 
   _likeElement(){
-    this._element.querySelector('.element__button-like').classList.toggle('element__button-like_active');
+    this._buttonLike.classList.toggle('element__button-like_active');
   }
 
   _addEventListener(){
-    this._element.querySelector('.element__button-delete').addEventListener('click', () => {
+    this._buttonDelete.addEventListener('click', () => {
       this._deleteElement();
     });
 
-    this._element.querySelector('.element__button-like').addEventListener('click', () => {
+    this._buttonLike.addEventListener('click', () => {
       this._likeElement();
     });
 
-    this._element.querySelector('.element__image').addEventListener('click', () => {
-      this._showElement();
+    this._elementImage.addEventListener('click', () => {
+      this._showElement(this._elementImageAlt, this._elementImageSrc);
     });
   }
 
-  _getTemplateElement() {
-    const newElement = elementTemplate.querySelector('.element').cloneNode(true);
-    return newElement;
+  _getElement() {
+    const element = document.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true);
+    return element;
   }
 
   generateElement() {
-    this._element = this._getTemplateElement();
     this._addEventListener();
-    this._element.querySelector('.element__image').src = this._elementImageSrc;
-    this._element.querySelector('.element__image').alt = this._elementImageAlt;
-    this._element.querySelector('.element__text').textContent = this._elementText;
-    return this._element;
+    this._elementImage.src = this._elementImageSrc;
+    this._elementImage.alt = this._elementImageAlt;
+    this._newElement.querySelector('.element__text').textContent = this._elementText;
+    return this._newElement;
   }
 }
