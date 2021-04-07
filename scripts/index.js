@@ -1,7 +1,7 @@
 import { initialCards } from './initial-card.js';
 import { showElement } from './utils.js';
 import Card from './Card.js';
-import { EditFormValidator, AddFormValidator } from './FormValidator.js';
+import FormValidator from './FormValidator.js';
 
 const content = document.querySelector('.content');
 export const popupFigure = content.querySelector('.popup_type_figure');
@@ -30,8 +30,8 @@ const validationSetting = {
   errorClass: 'popup__error_active'
 }
 
-const editFormValidator = new EditFormValidator(validationSetting, formEditProfile);
-const addFormValidator = new AddFormValidator(validationSetting, formAddElement);
+const editFormValidator = new FormValidator(validationSetting, formEditProfile);
+const addFormValidator = new FormValidator(validationSetting, formAddElement);
 
 /*Открытие попапа*/
 export function showPopup(popup) {
@@ -70,6 +70,7 @@ function formEditSubmitHandler() {
 
 /*показ формы добавленя элемента*/
 function showFormAddElement() {
+  addFormValidator.resetValidate();
   showPopup(popupAddElement);
 }
 
@@ -119,6 +120,12 @@ buttonEdit.addEventListener('click', showFormEditProfile);
 
 buttonAdd.addEventListener('click', showFormAddElement);
 
-formEditProfile.addEventListener('submit', formEditSubmitHandler);
+formEditProfile.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  formEditSubmitHandler();
+});
 
-formAddElement.addEventListener('submit', formAddSubmitHandler);
+formAddElement.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  formAddSubmitHandler();
+});

@@ -1,16 +1,24 @@
 /*класс валидации формы*/
-class FormValidator {
-    constructor(form) {
+export default class FormValidator {
+      constructor(validationSetting, form) {
+      this._formSelector = validationSetting.formSelector;
+      this._inputSelector = validationSetting.inputSelector;
+      this._submitButtonSelector = validationSetting.submitButtonSelector;
+      this._inactiveButtonClass = validationSetting.inactiveButtonClass;
+      this._inputErrorClass = validationSetting.inputErrorClass;
+      this._errorClass = validationSetting.errorClass;
       this._form = form;
+      this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
+      this._buttonSave = this._form.querySelector(this._submitButtonSelector)
+
     }
 
     /*проверить input*/
     _checkInput(input) {
-      this._input = input;
-      if (this._input.validity.valid) {
-        this._hideInputError();
+      if (input.validity.valid) {
+        this._hideInputError(input);
       } else {
-        this._showInputError();
+        this._showInputError(input);
       }
     }
 
@@ -26,22 +34,17 @@ class FormValidator {
     }
 
     /*скрыть ошибку*/
-    _hideInputError() {
+    _hideInputError(input) {
+      this._input = input;
       this._itemError = this._getItemError();
       this._input.classList.remove(this._inputErrorClass);
       this._itemError.textContent = '';
       this._itemError.classList.remove(this._errorClass);
     }
 
-    _resetValidate() {
-      this._inputList.forEach((input) => {
-        this._checkInput(input);
-      })
-      this._setStateButtonSave();
-    }
-
     /*показать ошибку*/
-    _showInputError() {
+    _showInputError(input) {
+      this._input = input;
       this._itemError = this._getItemError();
       this._input.classList.add(this._inputErrorClass);
       this._itemError.textContent = this._input.validationMessage;
@@ -50,7 +53,6 @@ class FormValidator {
 
     /*добавить слушатели*/
     _addEventListeners() {
-      this._form.addEventListener('submit', (evt) => {evt.preventDefault()});
       this._inputList.forEach((input) => {
         input.addEventListener('input', () => {
           this._checkInput(input);
@@ -62,59 +64,34 @@ class FormValidator {
     /*установить состояние кнопки сохранить*/
     _setStateButtonSave() {
       if (!this._hasInvalidInput()) {
-        this._buttonSave.disabled = false;
-        this._buttonSave.classList.remove(this._inactiveButtonClass);
+        this._enabledButtonSave()
       } else {
-        this._buttonSave.disabled = true;
-        this._buttonSave.classList.add(this._inactiveButtonClass);
+        this._disabledButtonSave()
       }
     }
 
-  /*включить валидацию*/
-  _enableValidate() {
-    this._addEventListeners();
-    this._setStateButtonSave()
-  }
-}
+    _enabledButtonSave() {
+      this._buttonSave.disabled = false;
+      this._buttonSave.classList.remove(this._inactiveButtonClass);
+    }
 
-export class EditFormValidator extends FormValidator {
-  constructor(validationSetting, form) {
-    super(form);
-    this._formSelector = validationSetting.formSelector;
-    this._inputSelector = validationSetting.inputSelector;
-    this._submitButtonSelector = validationSetting.submitButtonSelector;
-    this._inactiveButtonClass = validationSetting.inactiveButtonClass;
-    this._inputErrorClass = validationSetting.inputErrorClass;
-    this._errorClass = validationSetting.errorClass;
-    this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
-    this._buttonSave = this._form.querySelector(this._submitButtonSelector)
-  }
+    _disabledButtonSave() {
+      this._buttonSave.disabled = true;
+      this._buttonSave.classList.add(this._inactiveButtonClass);
+    }
 
-  /*включить валидацию*/
-  enableValidate() {
-    super._enableValidate();
-  }
-
+  /*сброс валидации*/
   resetValidate() {
-    super._resetValidate();
-  }
-}
-
-export class AddFormValidator extends FormValidator {
-  constructor(validationSetting, form) {
-    super(form);
-    this._formSelector = validationSetting.formSelector;
-    this._inputSelector = validationSetting.inputSelector;
-    this._submitButtonSelector = validationSetting.submitButtonSelector;
-    this._inactiveButtonClass = validationSetting.inactiveButtonClass;
-    this._inputErrorClass = validationSetting.inputErrorClass;
-    this._errorClass = validationSetting.errorClass;
-    this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
-    this._buttonSave = this._form.querySelector(this._submitButtonSelector)
+    this._inputList.forEach((input) => {
+      this._hideInputError(input);
+    });
+    (this._form.id === 'form-add-element')
+    ? this._disabledButtonSave()
+    : this._enabledButtonSave();
   }
 
   /*включить валидацию*/
   enableValidate() {
-    super._enableValidate();
+    this._addEventListeners();
   }
 }
