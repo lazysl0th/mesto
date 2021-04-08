@@ -85,9 +85,7 @@ export default class FormValidator {
     this._inputList.forEach((input) => {
       this._hideInputError(input);
     });
-    (this._form.id === 'form-add-element')
-    ? this._disabledButtonSave()
-    : this._enabledButtonSave();
+    this._disabledButtonSave();
   }
 
   /*включить валидацию*/
