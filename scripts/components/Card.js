@@ -1,10 +1,10 @@
 export default class Card {
-  constructor (card, templateSelector, showElement) {
-    this._elementImageSrc = card.link;
-    this._elementImageAlt = card.name;
-    this._elementText = card.name;
+  constructor ( {data, handleCardClick }, templateSelector) {
+    this._elementImageSrc = data.link;
+    this._elementImageAlt = data.name;
+    this._elementText = data.name;
     this._templateSelector = templateSelector;
-    this._showElement = showElement;
+    this._handleCardClick  = handleCardClick ;
     this._newElement = this._getElement();
     this._elementImage = this._newElement.querySelector('.element__image');
     this._buttonLike = this._newElement.querySelector('.element__button-like');
@@ -29,7 +29,7 @@ export default class Card {
     });
 
     this._elementImage.addEventListener('click', () => {
-      this._showElement(this._elementImageAlt, this._elementImageSrc);
+      this._handleCardClick(this._elementImageAlt, this._elementImageSrc);
     });
   }
 
