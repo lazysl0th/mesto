@@ -15,7 +15,6 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 
 const userInfo = new UserInfo ({nameSelector: '.profile__name', aboutSelector: '.profile__about'});
-const user = userInfo.getUserInfo();
 
 const editFormValidator = new FormValidator(validationSetting, formEditProfile);
 const addFormValidator = new FormValidator(validationSetting, formAddElement);
@@ -27,7 +26,7 @@ const editPopup = new PopupWithForm ( { popupSelector: '.popup_form_edit-profile
   submitHandler: (inputValues) => {
     userInfo.setUserInfo(inputValues);
   }
-}, user);
+});
 
 const addPopup = new PopupWithForm ( { popupSelector: '.popup_form_add-element', submitHandler: renderCard } );
 
@@ -45,6 +44,9 @@ addFormValidator.enableValidate();
 
 buttonEdit.addEventListener('click', () => {
   editFormValidator.resetValidate();
+  const user = userInfo.getUserInfo();
+  editPopup.form.name.value = user.profileName;
+  editPopup.form.about.value = user.profileAbout;
   editPopup.openPopup();
 });
 
