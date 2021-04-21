@@ -1,18 +1,18 @@
-import '../../pages/index.css';
+import './index.css';
 import {
   validationSetting,
   formEditProfile,
   formAddElement,
   buttonEdit,
   buttonAdd,
-} from '../utils/constants.js';
-import { initialCards } from '../initial-card.js';
-import { renderCard } from '../utils/utils.js';
-import FormValidator from '../components/FormValidator.js';
-import Section from '../components/Section.js';
-import PopupWithImage from '../components/PopupWithImage.js';
-import PopupWithForm from '../components/PopupWithForm.js';
-import UserInfo from '../components/UserInfo.js';
+} from '../scripts/utils/constants.js';
+import { initialCards } from '../scripts/initial-card.js';
+import { renderCard } from '../scripts/utils/utils.js';
+import FormValidator from '../scripts/components/FormValidator.js';
+import Section from '../scripts/components/Section.js';
+import PopupWithImage from '../scripts/components/PopupWithImage.js';
+import PopupWithForm from '../scripts/components/PopupWithForm.js';
+import UserInfo from '../scripts/components/UserInfo.js';
 
 const userInfo = new UserInfo ({nameSelector: '.profile__name', aboutSelector: '.profile__about'});
 

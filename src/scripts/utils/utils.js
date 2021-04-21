@@ -1,5 +1,5 @@
 /*показать элемент*/
-import { elementsList, imagePopup } from '../pages/index.js';
+import { elementsList, imagePopup } from '../../pages/index.js';
 import Card from '../components/Card.js';
 
 function showElement (name, link) {
