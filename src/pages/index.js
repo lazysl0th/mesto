@@ -13,8 +13,22 @@ import Section from '../scripts/components/Section.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
+import Api from '../scripts/components/Api.js';
 
-const userInfo = new UserInfo ({nameSelector: '.profile__name', aboutSelector: '.profile__about'});
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-23',
+  headers: {
+    authorization: 'a820ff32-e1e8-488c-be97-b68f912afc14',
+    'Content-Type': 'application/json'
+  }
+});
+
+
+const userInfo = new UserInfo ({nameSelector: '.profile__name', aboutSelector: '.profile__about', avatarSelector: '.profile__avatar'});
+
+api.downloadInformationAboutUser()
+  .then((result) => (userInfo.setUserInfo(result)))
+  .catch((error) => (console.log(error)));
 
 const editFormValidator = new FormValidator(validationSetting, formEditProfile);
 const addFormValidator = new FormValidator(validationSetting, formAddElement);
