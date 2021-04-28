@@ -1,5 +1,5 @@
 /*показать элемент*/
-import { elementsList, imagePopup } from '../../pages/index.js';
+import { /*elementsList,*/ imagePopup } from '../../pages/index.js';
 import Card from '../components/Card.js';
 
 function showElement (name, link) {
@@ -13,5 +13,6 @@ const createCard = (card) => {
 
 export const renderCard = (card) => {
   const element = createCard(card);
-  elementsList.addItem(element);
+  return element
+  /*elementsList.addItem(element);*/
 }
