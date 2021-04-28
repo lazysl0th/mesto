@@ -44,7 +44,11 @@ api.getInitialCards()
 
 const editPopup = new PopupWithForm ( { popupSelector: '.popup_form_edit-profile',
   submitHandler: (inputValues) => {
-    userInfo.setUserInfo(inputValues);
+    api.editInformationAboutUser(inputValues)
+      .then((result) => {
+        userInfo.setUserInfo(result);
+      })
+      .catch((error) => (console.log(error)));
   }
 });
 
