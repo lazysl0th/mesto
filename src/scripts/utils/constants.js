@@ -9,6 +9,8 @@ export const popupEditProfile = content.querySelector('.popup_form_edit-profile'
 export const formEditProfile = popupEditProfile.querySelector('.popup__content_type_form');
 export const popupAddElement = content.querySelector('.popup_form_add-element');
 export const formAddElement = popupAddElement.querySelector('.popup__content_type_form');
+export const popupSubmitDeleteElement = content.querySelector('.popup_form_submit-delete-element');
+export const formSubmitDeleteElement = popupAddElement.querySelector('.popup__content_type_form');
 export const validationSetting = {
   formSelector: '.popup__content_type_form',
   inputSelector: '.popup__item',

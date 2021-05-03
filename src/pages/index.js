@@ -3,14 +3,17 @@ import {
   validationSetting,
   formEditProfile,
   formAddElement,
+  formSubmitDeleteElement,
   buttonEdit,
   buttonAdd,
+
 } from '../scripts/utils/constants.js';
 import { createCard } from '../scripts/utils/utils.js';
 import FormValidator from '../scripts/components/FormValidator.js';
 import Section from '../scripts/components/Section.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
+import PopupWithSubmit from '../scripts/components/PopupWithSubmit.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import Api from '../scripts/components/Api.js';
 
@@ -65,11 +68,21 @@ const addPopup = new PopupWithForm ( { popupSelector: '.popup_form_add-element',
 
 export const imagePopup = new PopupWithImage ('.popup_type_figure');
 
+export const submitPopup = new PopupWithSubmit ({ popupSelector: '.popup_form_submit-delete-element',
+  submitHandler: () => {
+    console.log('1');
+  }
+}
+
+);
+
 editPopup.setEventListeners();
 
 addPopup.setEventListeners();
 
 imagePopup.setEventListeners();
+
+submitPopup.setEventListeners();
 
 /*валидация форм*/
 editFormValidator.enableValidate();

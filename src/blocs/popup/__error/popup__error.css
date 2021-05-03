@@ -7,3 +7,7 @@
   line-height: 15px;
   min-height: 15px;
 }
+
+.popup__error:last-of-type {
+  margin-bottom: 38px;
+}
