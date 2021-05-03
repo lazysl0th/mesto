@@ -6,8 +6,7 @@ import {
   buttonEdit,
   buttonAdd,
 } from '../scripts/utils/constants.js';
-import { initialCards } from '../scripts/initial-card.js';
-import { renderCard } from '../scripts/utils/utils.js';
+import { createCard } from '../scripts/utils/utils.js';
 import FormValidator from '../scripts/components/FormValidator.js';
 import Section from '../scripts/components/Section.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
@@ -32,13 +31,15 @@ api.getInformationAboutUser()
 const editFormValidator = new FormValidator(validationSetting, formEditProfile);
 const addFormValidator = new FormValidator(validationSetting, formAddElement);
 
-/*export const elementsList = new Section ({items: initialCards, renderer: renderCard }, '.elements__list');
-elementsList.renderItems();*/
+export const elementsList = new Section ({
+  renderer: (data) => {
+    elementsList.addItem(createCard(data));
+  }
+}, '.elements__list');
 
-api.getInitialCards()
-  .then((result) => {
-    const elementsList = new Section ({items: result, renderer: renderCard }, '.elements__list');
-    elementsList.renderItems()
+const initialCards = api.getInitialCards();
+initialCards.then((result) => {
+    elementsList.renderItems(result);
   })
   .catch((error) => (console.log(error)));
 
@@ -52,7 +53,15 @@ const editPopup = new PopupWithForm ( { popupSelector: '.popup_form_edit-profile
   }
 });
 
-const addPopup = new PopupWithForm ( { popupSelector: '.popup_form_add-element', submitHandler: renderCard } );
+const addPopup = new PopupWithForm ( { popupSelector: '.popup_form_add-element',
+  submitHandler: (inputValues) => {
+    api.addCard(inputValues)
+      .then((result) => {
+        elementsList.addItem(createCard(result));
+      })
+      .catch((error) => (console.log(error)));
+  }
+});
 
 export const imagePopup = new PopupWithImage ('.popup_type_figure');
 
