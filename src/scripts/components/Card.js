@@ -3,6 +3,7 @@ export default class Card {
     this._elementImageSrc = data.link;
     this._elementImageAlt = data.name;
     this._elementText = data.name;
+    this._likeNumber = (data.likes.length > 0) ? data.likes.length : '';
     this._templateSelector = templateSelector;
     this._handleCardClick  = handleCardClick ;
     this._newElement = this._getElement();
@@ -43,6 +44,7 @@ export default class Card {
     this._elementImage.src = this._elementImageSrc;
     this._elementImage.alt = this._elementImageAlt;
     this._newElement.querySelector('.element__text').textContent = this._elementText;
+    this._newElement.querySelector('.element__like-number').textContent = this._likeNumber;
     return this._newElement;
   }
 }

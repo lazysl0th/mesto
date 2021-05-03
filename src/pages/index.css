@@ -70,10 +70,14 @@
 @import "../blocs/element/__image/element__image.css";
 /*element__text*/
 @import "../blocs/element/__text/element__text.css";
+/*element__like*/
+@import "../blocs/element/__like/element__like.css";
 /*element__button-like*/
 @import "../blocs/element/__button-like/element__button-like.css";
 /*element__button-like_active*/
 @import "../blocs/element/__button-like/_active/element__button-like_active.css";
+/*element__like-number*/
+@import "../blocs/element/__like-number/element__like-number.css";
 /*footer*/
 @import "../blocs/footer/footer.css";
 /*footer__copyright*/
