@@ -66,6 +66,8 @@
 @import "../blocs/element/element.css";
 /*element__button-delete*/
 @import "../blocs/element/__button-delete/element__button-delete.css";
+/*element__button-delete_invisible*/
+@import "../blocs/element/__button-delete/_invisible/element__button-delete_invisible.css";
 /*element__image*/
 @import "../blocs/element/__image/element__image.css";
 /*element__text*/

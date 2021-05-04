@@ -6,8 +6,8 @@ function showElement (name, link) {
   imagePopup.openPopup(name, link);
 }
 
-function deleteElement () {
-  submitPopup.openPopup();
+function deleteElement (cardId, buttonDelete) {
+  submitPopup.openPopup(cardId, buttonDelete);
 }
 
 export const createCard = (card) => {
