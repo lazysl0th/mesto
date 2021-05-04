@@ -3,10 +3,8 @@ import {
   validationSetting,
   formEditProfile,
   formAddElement,
-  formSubmitDeleteElement,
   buttonEdit,
   buttonAdd,
-
 } from '../scripts/utils/constants.js';
 import { createCard } from '../scripts/utils/utils.js';
 import FormValidator from '../scripts/components/FormValidator.js';
@@ -25,10 +23,12 @@ export const api = new Api({
   }
 });
 
-const userInfo = new UserInfo ({nameSelector: '.profile__name', aboutSelector: '.profile__about', avatarSelector: '.profile__avatar'});
+export const userInfo = new UserInfo ({nameSelector: '.profile__name', aboutSelector: '.profile__about', avatarSelector: '.profile__avatar'});
 
 api.getInformationAboutUser()
-  .then((result) => (userInfo.setUserInfo(result)))
+  .then((result) => {
+    userInfo.setUserInfo(result);
+  })
   .catch((error) => (console.log(error)));
 
 const editFormValidator = new FormValidator(validationSetting, formEditProfile);

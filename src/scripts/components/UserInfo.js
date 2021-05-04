@@ -3,6 +3,7 @@ export default class UserInfo {
     this._name = document.querySelector(nameSelector);
     this._about = document.querySelector(aboutSelector);
     this._avatar = document.querySelector(avatarSelector);
+    this.userId = '';
   }
   getUserInfo() {
     const profileName = this._name.textContent;
@@ -10,9 +11,10 @@ export default class UserInfo {
     return { profileName, profileAbout };
   }
 
-  setUserInfo( {name, about, avatar} ) {
+  setUserInfo( {name, about, avatar, _id} ) {
     this._name.textContent = name;
     this._about.textContent = about;
     this._avatar.src = avatar;
+    this.userId = _id;
   }
 }
