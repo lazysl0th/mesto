@@ -27,12 +27,6 @@ export const api = new Api({
 
 export const userInfo = new UserInfo ({nameSelector: '.profile__name', aboutSelector: '.profile__about', avatarSelector: '.profile__avatar'});
 
-api.getInformationAboutUser()
-  .then((result) => {
-    userInfo.setUserInfo(result);
-  })
-  .catch((error) => (console.log(error)));
-
 const editFormValidator = new FormValidator(validationSetting, formEditProfile);
 const addFormValidator = new FormValidator(validationSetting, formAddElement);
 const editAvatarFormValidator = new FormValidator(validationSetting, formUpdateAvatar);
@@ -43,17 +37,24 @@ export const elementsList = new Section ({
   }
 }, '.elements__list');
 
-const initialCards = api.getInitialCards();
-initialCards.then((result) => {
-    elementsList.renderItems(result);
+const informationAboutUserPromise =  api.getInformationAboutUser();
+const initialCardsPromise = api.getInitialCards();
+
+Promise.all([informationAboutUserPromise, initialCardsPromise])
+  .then((result) => {
+    userInfo.setUserInfo(result[0]);
+    elementsList.renderItems(result[1]);
   })
   .catch((error) => (console.log(error)));
 
 const editPopup = new PopupWithForm ( { popupSelector: '.popup_form_edit-profile',
   submitHandler: (inputValues) => {
-    api.editInformationAboutUser(inputValues)
+    const editInformationAboutUserPromise = api.editInformationAboutUser(inputValues);
+    Promise.all([editInformationAboutUserPromise])
       .then((result) => {
-        userInfo.setUserInfo(result);
+        userInfo.setUserInfo(result[0]);
+        editPopup.renderLoading(false);
+        editPopup.closePopup();
       })
       .catch((error) => (console.log(error)));
   }
@@ -61,9 +62,12 @@ const editPopup = new PopupWithForm ( { popupSelector: '.popup_form_edit-profile
 
 const addPopup = new PopupWithForm ( { popupSelector: '.popup_form_add-element',
   submitHandler: (inputValues) => {
-    api.addCard(inputValues)
+    const addCardPromise = api.addCard(inputValues);
+    Promise.all([addCardPromise])
       .then((result) => {
-        elementsList.addItem(createCard(result));
+        elementsList.addItem(createCard(result[0]));
+        addPopup.renderLoading(false);
+        addPopup.closePopup();
       })
       .catch((error) => (console.log(error)));
   }
@@ -74,16 +78,19 @@ export const imagePopup = new PopupWithImage ('.popup_type_figure');
 export const submitPopup = new PopupWithSubmit ({ popupSelector: '.popup_form_submit-delete-element',
   submitHandler: (cardId, buttonDelete) => {
     api.deleteCard(cardId)
-      .then((result) => buttonDelete.closest('.element').remove())
+      .then(() => buttonDelete.closest('.element').remove())
       .catch((error) => (console.log(error)));
   }
 });
 
 const editAvatarPopup = new PopupWithForm ({ popupSelector: '.popup_form_update-avatar',
   submitHandler: (inputValues) => {
-    api.updateAvatar(inputValues)
+    const updateAvatarPromise = api.updateAvatar(inputValues);
+    Promise.all([updateAvatarPromise])
       .then((result) => {
-        userInfo.setUserInfo(result);
+        userInfo.setUserInfo(result[0]);
+        editAvatarPopup.renderLoading(false);
+        editAvatarPopup.closePopup();
       })
       .catch((error) => (console.log(error)));
   }

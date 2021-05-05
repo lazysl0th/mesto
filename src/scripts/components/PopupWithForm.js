@@ -8,6 +8,14 @@ export default class PopupWithForm extends Popup {
     this._formInputs = this.form.querySelectorAll('.popup__item');
   }
 
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this.form.buttonSave.textContent = 'Сохранение...';
+    } else {
+      this.form.buttonSave.textContent = 'Сохранить';
+    }
+  }
+
   _getInputValues() {
     const inputValues = {};
     this._formInputs.forEach((input) => (inputValues[input.name] = input.value));
@@ -17,8 +25,8 @@ export default class PopupWithForm extends Popup {
   setEventListeners() {
     this.form.addEventListener('submit', (evt) => {
       evt.preventDefault();
+      this.renderLoading(true);
       this._submitHandler(this._getInputValues());
-      this.closePopup();
     });
     super.setEventListeners();
   }
