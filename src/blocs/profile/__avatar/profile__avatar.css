@@ -3,4 +3,14 @@
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
+  background-color: rgba(0, 0, 0, 0);
+  position: relative;
+  z-index: 0;
+}
+
+.profile__button-edit-avatar:hover .profile__avatar {
+  opacity: 0.8;
+  transition: opacity 0.5s linear 0s;
+  position: relative;
+  z-index: -1;
 }

@@ -14,6 +14,8 @@
 @import "../blocs/profile/profile.css";
 /*profile__avatar*/
 @import "../blocs/profile/__avatar/profile__avatar.css";
+/*profile__button-edit-avatar*/
+@import "../blocs/profile/__button-edit-avatar/profile__button-edit-avatar.css";
 /*profile__info*/
 @import "../blocs/profile/__info/profile__info.css";
 /*profile__name*/

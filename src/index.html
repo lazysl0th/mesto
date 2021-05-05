@@ -12,7 +12,9 @@
 
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="#" alt="Аватар">
+        <button type="button" name="button-edit-avatar" class="profile__button-edit-avatar">
+          <img class="profile__avatar" src="#" alt="Аватар">
+        </button>
         <div class="profile__info">
           <h1 class="profile__name"></h1>
           <p class="profile__about"></p>
@@ -57,6 +59,16 @@
         <form name="popupFormSubmitDeleteElement" id="form-submit-delete-element" class="popup__content popup__content_type_form">
           <h2 class="popup__heading">Вы уверены?</h2>
           <button type="submit" name="buttonSave" class="popup__button-save popup__button-save_submit-popup">Да</button>
+        </form>
+        <button type="button" name="buttonCancel" class="popup__button-cancel popup__button-cancel_type_add-element"></button>
+      </div>
+
+      <div class="popup popup_type_form popup_form_update-avatar">
+        <form name="popupFormUpdateAvatar" id="form-update-avatar" class="popup__content popup__content_type_form" novalidate>
+          <h2 class="popup__heading">Обновить аватар</h2>
+          <input type="url" name="link" id="link-input" class="popup__item popup__item_link" placeholder="Ссылка на аватар" required>
+          <span class="popup__error link-input-error"></span>
+          <button type="submit" name="buttonSave" class="popup__button-save">Сохранить</button>
         </form>
         <button type="button" name="buttonCancel" class="popup__button-cancel popup__button-cancel_type_add-element"></button>
       </div>

@@ -3,8 +3,10 @@ import {
   validationSetting,
   formEditProfile,
   formAddElement,
+  formUpdateAvatar,
   buttonEdit,
   buttonAdd,
+  buttonEditAvatar,
 } from '../scripts/utils/constants.js';
 import { createCard } from '../scripts/utils/utils.js';
 import FormValidator from '../scripts/components/FormValidator.js';
@@ -33,6 +35,7 @@ api.getInformationAboutUser()
 
 const editFormValidator = new FormValidator(validationSetting, formEditProfile);
 const addFormValidator = new FormValidator(validationSetting, formAddElement);
+const editAvatarFormValidator = new FormValidator(validationSetting, formUpdateAvatar);
 
 export const elementsList = new Section ({
   renderer: (data) => {
@@ -76,6 +79,16 @@ export const submitPopup = new PopupWithSubmit ({ popupSelector: '.popup_form_su
   }
 });
 
+const editAvatarPopup = new PopupWithForm ({ popupSelector: '.popup_form_update-avatar',
+  submitHandler: (inputValues) => {
+    api.updateAvatar(inputValues)
+      .then((result) => {
+        userInfo.setUserInfo(result);
+      })
+      .catch((error) => (console.log(error)));
+  }
+});
+
 editPopup.setEventListeners();
 
 addPopup.setEventListeners();
@@ -84,9 +97,12 @@ imagePopup.setEventListeners();
 
 submitPopup.setEventListeners();
 
+editAvatarPopup.setEventListeners();
+
 /*валидация форм*/
 editFormValidator.enableValidate();
 addFormValidator.enableValidate();
+editAvatarFormValidator.enableValidate();
 
 buttonEdit.addEventListener('click', () => {
   editFormValidator.resetValidate();
@@ -99,4 +115,11 @@ buttonEdit.addEventListener('click', () => {
 buttonAdd.addEventListener('click', () => {
   addFormValidator.resetValidate();
   addPopup.openPopup();
+});
+
+buttonEditAvatar.addEventListener('click', () => {
+  editAvatarFormValidator.resetValidate();
+  const user = userInfo.getUserInfo();
+  editAvatarPopup.form.link.value = user.profileAvatar;
+  editAvatarPopup.openPopup();
 });

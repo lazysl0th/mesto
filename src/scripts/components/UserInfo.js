@@ -8,7 +8,8 @@ export default class UserInfo {
   getUserInfo() {
     const profileName = this._name.textContent;
     const profileAbout = this._about.textContent;
-    return { profileName, profileAbout };
+    const profileAvatar = this._avatar.src;
+    return { profileName, profileAbout, profileAvatar };
   }
 
   setUserInfo( {name, about, avatar, _id} ) {
