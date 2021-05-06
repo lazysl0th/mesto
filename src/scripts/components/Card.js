@@ -62,7 +62,7 @@ export default class Card {
   }
 
   _addEventListener(){
-    if (this._owner == this._userId) {
+    if (this._owner === this._userId) {
       this._buttonDelete.addEventListener('click', () => {
         this._handleCardDelete(this._cardId, this._buttonDelete);
       });

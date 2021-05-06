@@ -1,12 +1,6 @@
 import './index.css';
 import {
   validationSetting,
-  formEditProfile,
-  formAddElement,
-  formUpdateAvatar,
-  buttonEdit,
-  buttonAdd,
-  buttonEditAvatar,
 } from '../scripts/utils/constants.js';
 import { createCard } from '../scripts/utils/utils.js';
 import FormValidator from '../scripts/components/FormValidator.js';
@@ -16,6 +10,17 @@ import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import PopupWithSubmit from '../scripts/components/PopupWithSubmit.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import Api from '../scripts/components/Api.js';
+
+const content = document.querySelector('.content');
+const buttonEdit = content.querySelector('.profile__button-edit');
+const buttonAdd = content.querySelector('.profile__button-add');
+const buttonEditAvatar = content.querySelector('.profile__button-edit-avatar');
+const popupEditProfile = content.querySelector('.popup_form_edit-profile');
+const formEditProfile = popupEditProfile.querySelector('.popup__content_type_form');
+const popupAddElement = content.querySelector('.popup_form_add-element');
+const formAddElement = popupAddElement.querySelector('.popup__content_type_form');
+const popupFormUpdateAvatar = content.querySelector('.popup_form_update-avatar');
+const formUpdateAvatar = popupFormUpdateAvatar.querySelector('.popup__content_type_form');
 
 export const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-23/',
@@ -78,7 +83,11 @@ export const imagePopup = new PopupWithImage ('.popup_type_figure');
 export const submitPopup = new PopupWithSubmit ({ popupSelector: '.popup_form_submit-delete-element',
   submitHandler: (cardId, buttonDelete) => {
     api.deleteCard(cardId)
-      .then(() => buttonDelete.closest('.element').remove())
+      .then(() => {
+        buttonDelete.closest('.element').remove();
+        submitPopup.closePopup();
+      }
+      )
       .catch((error) => (console.log(error)));
   }
 });
